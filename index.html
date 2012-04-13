@@ -13,53 +13,54 @@
 <blockquote><em>hspec aims to be a simple, extendable, and useful tool for
 Behavior Driven Development in Haskell.  </em></blockquote>
 
-<p>Step 1, write descriptions and examples of your desired behavior</p>
+<h3>Step 1: Write descriptions and examples of your desired behavior</h3>
 
 
 <pre>
-module Myabs where
+-- file MathSpec.hs
+module MathSpec where
 
 import Test.Hspec.Monadic
+import Math
 
 main = hspecX $ do
-  describe "myabs" $ do
+  describe "absolute" $ do
     it "returns the original number when given a positive input" $
-      myabs 1 == 1
+      absolute 1 == 1
 
     it "returns a positive number when given a negative input" $
-      myabs (-1) == 1
+      absolute (-1) == 1
 
     it "returns zero when given zero" $
-      myabs 0 == 0
+      absolute 0 == 0
 </pre>
 
-<p>Step 2, write whatever you are describing</p>
+<h3>Step 2: Write whatever you are describing</h3>
 
 <pre>
-myabs n = undefined
+-- file Math.hs
+module Math where
+
+absolute n = undefined
 </pre>
 
-<p>Step 3, watch your examples fail</p>
+<h3>Step 3: Watch your examples fail</h3>
 
-<pre>
-$ runhaskell Myabs.hs
-</pre>
+<pre class="terminal">
+$ runhaskell MathSpec.hs
 
-
-
-<pre>
-myabs
+absolute
 <span class="fail"> - returns the original number when given a positive input FAILED [1]
  - returns a positive number when given a negative input FAILED [2]
  - returns zero when given zero FAILED [3]
 
-1) myabs returns the original number when given a positive input FAILED
+1) absolute returns the original number when given a positive input FAILED
 Prelude.undefined
 
-2) myabs returns a positive number when given a negative input FAILED
+2) absolute returns a positive number when given a negative input FAILED
 Prelude.undefined
 
-3) myabs returns zero when given zero FAILED
+3) absolute returns zero when given zero FAILED
 Prelude.undefined
 
 Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
@@ -67,16 +68,21 @@ Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
 3 examples, 3 failures</span>
 </pre>
 
-<p>Step 4, implement your desired behavior</p>
+<h3>Step 4: Implement your desired behavior</h3>
 
 <pre>
-myabs n = if n < 0 then negate n else n
+-- file Math.hs
+module Math where
+
+absolute n = if n < 0 then negate n else n
 </pre>
 
-<p>Step 5, watch your examples succeed</p>
+<h3>Step 5: Watch your examples succeed</h3>
 
-<pre>
-myabs
+<pre class="terminal">
+$ runhaskell MathSpec.hs
+
+absolute
 <span class="success"> - returns the original number when given a positive input
  - returns a positive number when given a negative input
  - returns zero when given zero
