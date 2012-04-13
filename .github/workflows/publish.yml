@@ -1,0 +1,53 @@
+name:  Publish documentation 
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        required: true
+        default: main
+        type: string
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: publish
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          repository: hspec/hspec
+          ref: ${{ inputs.ref }}
+          
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 2
+    
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+          working-directory: doc
+
+      - name: Build documentation
+        run: |
+          rm cabal.project
+          cd doc
+          cabal update
+          cabal install HUnit QuickCheck hspec hspec-contrib --lib --package-env .
+          bundle exec jekyll build
+
+      - uses: actions/upload-pages-artifact@v1
+        with:
+          path: doc/_site/
+      - uses: actions/deploy-pages@v1
+        id: deployment
