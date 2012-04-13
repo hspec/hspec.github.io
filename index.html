@@ -2,12 +2,91 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Hspec: Behavior Driven Development for Haskell</title>
-    <link rel="stylesheet" type="text/css" href="http://sol.github.com/get-bootstrapped/bootstrap/2.0.2/css/bootstrap.min.css">
+    <title>hspec: Behavior Driven Development for Haskell</title>
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/custom.css">
   </head>
   <body>
     <div class="container">
-      <h1>Hspec: Behavior Driven Development for Haskell</h1>
+
+
+<div class="page-header"><h1>hspec <small>Behavior Driven Development for Haskell</small></h1></div>
+<blockquote><em>hspec aims to be a simple, extendable, and useful tool for
+Behavior Driven Development in Haskell.  </em></blockquote>
+
+<p>Step 1, write descriptions and examples of your desired behavior</p>
+
+
+<pre>
+module Myabs where
+
+import Test.Hspec.Monadic
+
+main = hspecX $ do
+  describe "myabs" $ do
+    it "returns the original number when given a positive input" $
+      myabs 1 == 1
+
+    it "returns a positive number when given a negative input" $
+      myabs (-1) == 1
+
+    it "returns zero when given zero" $
+      myabs 0 == 0
+</pre>
+
+<p>Step 2, write whatever you are describing</p>
+
+<pre>
+myabs n = undefined
+</pre>
+
+<p>Step 3, watch your examples fail</p>
+
+<pre>
+$ runhaskell Myabs.hs
+</pre>
+
+
+
+<pre>
+myabs
+<span class="fail"> - returns the original number when given a positive input FAILED [1]
+ - returns a positive number when given a negative input FAILED [2]
+ - returns zero when given zero FAILED [3]
+
+1) myabs returns the original number when given a positive input FAILED
+Prelude.undefined
+
+2) myabs returns a positive number when given a negative input FAILED
+Prelude.undefined
+
+3) myabs returns zero when given zero FAILED
+Prelude.undefined
+
+Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
+
+3 examples, 3 failures</span>
+</pre>
+
+<p>Step 4, implement your desired behavior</p>
+
+<pre>
+myabs n = if n < 0 then negate n else n
+</pre>
+
+<p>Step 5, watch your examples succeed</p>
+
+<pre>
+myabs
+<span class="success"> - returns the original number when given a positive input
+ - returns a positive number when given a negative input
+ - returns zero when given zero
+
+Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
+
+3 examples, 0 failures</span>
+</pre>
+
+
     </div>
   </body>
 </html>
