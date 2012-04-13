@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- TODO: Restrict font variants to what we are actually using! -->
+    <!-- link href='http://fonts.googleapis.com/css?family=Arimo:700italic,700,400italic,400|Cousine:700italic,700,400italic,400' rel='stylesheet' type='text/css'-->
+
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <title>Hspec: A Testing Framework for Haskell</title>
+  </head>
+  <body>
+    <a class="header" href="index.html">
+      <div class="container">
+        <h1>Hspec: <span class="sub">A Testing Framework for Haskell</span></h1>
+      </div>
+    </a>
+
+    <div class="container">
+      <noscript>
+        <em>Tip: JavaScript is disabled in your browser.  If you enable JavaScript
+        you'll get some non-essential but convenient user interface
+        enhancements.</em>
+      </noscript>
+      <h2>Using QuickCheck with Hspec</h2>
+
+<p>You can use arbitrary QuickCheck properties with Hspec, but they must be of
+type <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#t:Property"><code>Property</code></a>.  QuickCheck&#39;s <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#v:property"><code>property</code></a> function can be used to
+turn anything that is a member of the <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck-Property.html#t:Testable"><code>Testable</code></a> class into a
+<a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#t:Property"><code>Property</code></a>.  Here is an example:</p>
+<div class="highlight"><pre><code class="hspec">describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+  it <span class="sd">&quot;is inverse to show&quot;</span> <span class="o">$</span> <span class="n">property</span> <span class="o">$</span>
+    <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+</code></pre></div>
+<div>
+  <h5 class="foldable">Example code:</h5>
+  <div>
+
+<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
+<span class="kr">import</span> <span class="nn">Test.Hspec</span>
+<span class="kr">import</span> <span class="nn">Test.QuickCheck</span>
+
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
+  describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    context <span class="sd">&quot;when used with ints&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      it <span class="sd">&quot;is inverse to show&quot;</span> <span class="o">$</span> <span class="n">property</span> <span class="o">$</span>
+        <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+</code></pre></div>
+
+<pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
+<samp>
+read
+  when used with ints
+<span class="hspec-success">    is inverse to show
+</span>
+Finished in 0.0056 seconds
+<span class="hspec-success">1 example, 0 failures</span>
+</samp></pre>
+
+  </div>
+</div>
+
+    </div>
+
+    <div class="footer">
+      <div style="margin-left: 10px">
+        <iframe width="90px" scrolling="0" height="20px" frameborder="0" allowtransparency="true" src="http://ghbtns.com/github-btn.html?user=hspec&amp;repo=hspec&amp;type=watch&amp;count=true"></iframe>
+        <iframe width="90px" scrolling="0" height="20px" frameborder="0" allowtransparency="true" src="http://ghbtns.com/github-btn.html?user=hspec&amp;repo=hspec&amp;type=fork&amp;count=true"></iframe>
+      </div>
+      <div class="follow-me">
+        <a href="https://twitter.com/solirc_" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @solirc_</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery.scrollintoview.js"></script>
+    <script src="js/custom.js"></script>
+  </body>
+</html>

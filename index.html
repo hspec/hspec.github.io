@@ -2,12 +2,137 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <title>Hspec: Behavior Driven Development for Haskell</title>
-    <link rel="stylesheet" type="text/css" href="http://sol.github.com/get-bootstrapped/bootstrap/2.0.2/css/bootstrap.min.css">
+
+    <!-- TODO: Restrict font variants to what we are actually using! -->
+    <!-- link href='http://fonts.googleapis.com/css?family=Arimo:700italic,700,400italic,400|Cousine:700italic,700,400italic,400' rel='stylesheet' type='text/css'-->
+
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <title>Hspec: A Testing Framework for Haskell</title>
   </head>
   <body>
+    <a class="header" href="index.html">
+      <div class="container">
+        <h1>Hspec: <span class="sub">A Testing Framework for Haskell</span></h1>
+      </div>
+    </a>
+
     <div class="container">
-      <h1>Hspec: Behavior Driven Development for Haskell</h1>
+      <noscript>
+        <em>Tip: JavaScript is disabled in your browser.  If you enable JavaScript
+        you'll get some non-essential but convenient user interface
+        enhancements.</em>
+      </noscript>
+      <h1>User&#39;s Manual</h1>
+
+<p>Hspec is a testing framework for <a href="http://www.haskell.org/">Haskell</a>.  It is
+inspired by the Ruby library <a href="http://rspec.info/">RSpec</a>.  Some of Hspec&#39;s
+distinctive features are:</p>
+
+<ul>
+<li>a friendly DSL for defining tests</li>
+<li>integration with QuickCheck, SmallCheck, and HUnit</li>
+<li>parallel test execution</li>
+<li>automatic discovery of test files</li>
+</ul>
+
+<p>An example is worth a thousand words, so here we go:</p>
+
+<pre><kbd class="shell-input">cabal update && cabal install hspec</kbd></pre>
+
+<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
+<span class="kr">import</span> <span class="nn">Test.Hspec</span>
+<span class="kr">import</span> <span class="nn">Test.QuickCheck</span>
+<span class="kr">import</span> <span class="nn">Control.Exception</span> <span class="p">(</span><span class="nf">evaluate</span><span class="p">)</span>
+
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
+  describe <span class="sd">&quot;Prelude.head&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    it <span class="sd">&quot;returns the first element of a list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      <span class="n">head</span> <span class="p">[</span><span class="mi">23</span> <span class="o">..</span><span class="p">]</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="p">(</span><span class="mi">23</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+
+    it <span class="sd">&quot;returns the first element of an *arbitrary* list&quot;</span> <span class="o">$</span>
+      <span class="n">property</span> <span class="o">$</span> <span class="nf">\</span><span class="n">x</span> <span class="n">xs</span> <span class="ow">-&gt;</span> <span class="n">head</span> <span class="p">(</span><span class="n">x</span><span class="kt">:</span><span class="n">xs</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+
+    it <span class="sd">&quot;throws an exception if used with an empty list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      <span class="n">evaluate</span> <span class="p">(</span><span class="n">head</span> <span class="kt">[]</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyException</span>
+</code></pre></div>
+
+<pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
+<samp>
+Prelude.head
+<span class="hspec-success">  returns the first element of a list
+</span><span class="hspec-success">  returns the first element of an *arbitrary* list
+</span><span class="hspec-success">  throws an exception if used with an empty list
+</span>
+Finished in 0.0034 seconds
+<span class="hspec-success">3 examples, 0 failures</span>
+</samp></pre>
+
+<h2>Table of contents</h2>
+
+<ul>
+<li><a href="getting-started.html">Five-step introduction</a></li>
+<li><a href="writing-specs.html">Writing tests with Hspec</a></li>
+<li><a href="running-specs.html">Running tests with Hspec</a></li>
+<li><a href="expectations.html">Setting expectations</a></li>
+<li><a href="quickcheck.html">Using QuickCheck with Hspec</a></li>
+<li><a href="hunit.html">Interoperability with HUnit</a></li>
+<li><a href="hspec-discover.html">Automatic spec discovery</a></li>
+<li><a href="parallel-spec-execution.html">Parallel spec execution</a></li>
+</ul>
+
+<h2>Extensions</h2>
+
+<ul>
+<li><a href="http://hackage.haskell.org/package/hspec-expectations-lens">hspec-expectations-lens</a> — Hspec expectations for the <em>lens</em> stuff</li>
+<li><a href="http://hackage.haskell.org/package/hspec-webdriver">hspec-webdriver</a> — write end2end web application tests using <em>webdriver</em> and hspec</li>
+<li><a href="http://hackage.haskell.org/package/hspec-snap">hspec-snap</a> — a library for testing with Hspec and the <em>Snap Web Framework</em></li>
+<li><a href="http://hackage.haskell.org/package/hspec-checkers">hspec-checkers</a> — allows to use <em>checkers</em> properties from hspec</li>
+<li><a href="http://hackage.haskell.org/package/hspec-smallcheck">hspec-smallcheck</a> — support for <em>SmallCheck</em></li>
+<li><a href="http://hackage.haskell.org/package/hspec-laws">hspec-laws</a> — document and test laws for standard type classes</li>
+<li><a href="http://hackage.haskell.org/package/hspec-attoparsec">hspec-attoparsec</a> — utility functions for testing your <em>attoparsec</em> parsers with hspec</li>
+<li><a href="http://hackage.haskell.org/package/hspec-jenkins">hspec-jenkins</a> — Jenkins-friendly XML formatter for Hspec</li>
+<li><a href="http://hackage.haskell.org/package/hspec-expectations-lifted">hspec-expectations-lifted</a> — a version of <em>hspec-expectations</em> generalized to MonadIO</li>
+<li><a href="http://hackage.haskell.org/package/hspec-expectations-pretty">hspec-expectations-pretty</a> — <em>hspec-expectations</em> with pretty printing on failure</li>
+<li><a href="http://hackage.haskell.org/package/hspec-test-framework">hspec-test-framework</a> and <a href="http://hackage.haskell.org/package/hspec-test-framework-th">hspec-test-framework-th</a> — run <em>test-framework</em> tests with Hspec</li>
+</ul>
+
+<h2>Blogosphere</h2>
+
+<ul>
+<li><a href="http://begriffs.com/posts/2014-10-19-warp-server-controller-test.html">Writing controller specs for a Warp server</a></li>
+<li><a href="http://alpmestan.com/posts/2014-06-18-testing-attoparsec-parsers-with-hspec.html">Testing attoparsec parsers with hspec</a></li>
+</ul>
+
+<h2>Other resources</h2>
+
+<ul>
+<li><a href="https://github.com/hspec/hspec">Hspec on GitHub</a></li>
+<li><a href="http://hackage.haskell.org/package/hspec">Hspec on Hackage</a></li>
+<li><a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec.html">API documentation</a></li>
+<li><a href="https://github.com/hspec/hspec.vim#readme">Vim syntax file for Hspec</a></li>
+<li><a href="http://rubygems.org/gems/guard-haskell">Guard plugin for Hspec</a></li>
+</ul>
+
+<h2>Support</h2>
+
+<p>Want to chat? <code>/join #hspec</code> on freenode!</p>
+
     </div>
+
+    <div class="footer">
+      <div style="margin-left: 10px">
+        <iframe width="90px" scrolling="0" height="20px" frameborder="0" allowtransparency="true" src="http://ghbtns.com/github-btn.html?user=hspec&amp;repo=hspec&amp;type=watch&amp;count=true"></iframe>
+        <iframe width="90px" scrolling="0" height="20px" frameborder="0" allowtransparency="true" src="http://ghbtns.com/github-btn.html?user=hspec&amp;repo=hspec&amp;type=fork&amp;count=true"></iframe>
+      </div>
+      <div class="follow-me">
+        <a href="https://twitter.com/solirc_" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @solirc_</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery.scrollintoview.js"></script>
+    <script src="js/custom.js"></script>
   </body>
 </html>

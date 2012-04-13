@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- TODO: Restrict font variants to what we are actually using! -->
+    <!-- link href='http://fonts.googleapis.com/css?family=Arimo:700italic,700,400italic,400|Cousine:700italic,700,400italic,400' rel='stylesheet' type='text/css'-->
+
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <title>Hspec: A Testing Framework for Haskell</title>
+  </head>
+  <body>
+    <a class="header" href="index.html">
+      <div class="container">
+        <h1>Hspec: <span class="sub">A Testing Framework for Haskell</span></h1>
+      </div>
+    </a>
+
+    <div class="container">
+      <noscript>
+        <em>Tip: JavaScript is disabled in your browser.  If you enable JavaScript
+        you'll get some non-essential but convenient user interface
+        enhancements.</em>
+      </noscript>
+      <h2>Running Tests with Hspec</h2>
+
+<p>The most common way to run a spec is with <a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec-Runner.html#v:hspec"><code>hspec</code></a>, e.g.:</p>
+<div class="highlight"><pre><code class="text">main = hspec spec
+</code></pre></div>
+<p>It is possible to customize how a spec is run by providing command-line flags.
+You can get a list of supported flags by passing <code>--help</code> to your test driver:</p>
+
+<pre>
+<kbd class="shell-input">runhaskell Spec.hs --help</kbd>
+<samp>Usage: Spec.hs [OPTION]...
+
+OPTIONS
+                --help              display this help and exit
+  -m PATTERN    --match=PATTERN     only run examples that match given PATTERN
+                --color             colorize the output
+                --no-color          do not colorize the output
+  -f FORMATTER  --format=FORMATTER  use a custom formatter; this can be one of:
+                                       specdoc
+                                       progress
+                                       failed-examples
+                                       silent
+  -o FILE       --out=FILE          write output to a file instead of STDOUT
+                --depth=N           maximum depth of generated test values for
+                                    SmallCheck properties
+  -a N          --qc-max-success=N  maximum number of successful tests before a
+                                    QuickCheck property succeeds
+                --qc-max-size=N     size to use for the biggest test cases
+                --qc-max-discard=N  maximum number of discarded tests per
+                                    successful test before giving up
+                --seed=N            used seed for QuickCheck properties
+                --print-cpu-time    include used CPU time in summary
+                --dry-run           pretend that everything passed; don't verify
+                                    anything
+                --fail-fast         abort on first failure
+  -r            --rerun             rerun all examples that failed in the
+                                    previously test run (only works in GHCi)
+</samp>
+</pre>
+
+<p>Using <a href="http://hackage.haskell.org/packages/archive/hspec-core/latest/doc/html/Test-Hspec-Core-Runner.html#v:hspecWith"><code>hspecWith</code></a> instead of <code>hspec</code> gives even more control over how a
+spec is run.</p>
+
+    </div>
+
+    <div class="footer">
+      <div style="margin-left: 10px">
+        <iframe width="90px" scrolling="0" height="20px" frameborder="0" allowtransparency="true" src="http://ghbtns.com/github-btn.html?user=hspec&amp;repo=hspec&amp;type=watch&amp;count=true"></iframe>
+        <iframe width="90px" scrolling="0" height="20px" frameborder="0" allowtransparency="true" src="http://ghbtns.com/github-btn.html?user=hspec&amp;repo=hspec&amp;type=fork&amp;count=true"></iframe>
+      </div>
+      <div class="follow-me">
+        <a href="https://twitter.com/solirc_" class="twitter-follow-button" data-show-count="false" data-dnt="true">Follow @solirc_</a>
+        <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+      </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery.scrollintoview.js"></script>
+    <script src="js/custom.js"></script>
+  </body>
+</html>
