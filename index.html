@@ -13,7 +13,7 @@
 <blockquote><em>hspec aims to be a simple, extendable, and useful tool for
 Behavior Driven Development in Haskell.  </em></blockquote>
 
-<h3>Step 1: Write descriptions and examples of your desired behavior</h3>
+<h3>Step 1: Describe your desired behavior</h3>
 
 
 <pre>
@@ -35,7 +35,7 @@ main = hspecX $ do
       absolute 0 == 0
 </pre>
 
-<h3>Step 2: Write whatever you are describing</h3>
+<h3>Step 2: Write some code</h3>
 
 <pre>
 -- file Math.hs
@@ -44,7 +44,7 @@ module Math where
 absolute n = undefined
 </pre>
 
-<h3>Step 3: Watch your examples fail</h3>
+<h3>Step 3: Run and watch it fail</h3>
 
 <pre class="terminal">
 $ runhaskell MathSpec.hs
@@ -77,7 +77,7 @@ module Math where
 absolute n = if n < 0 then negate n else n
 </pre>
 
-<h3>Step 5: Watch your examples succeed</h3>
+<h3>Step 5: Run again and see it pass</h3>
 
 <pre class="terminal">
 $ runhaskell MathSpec.hs

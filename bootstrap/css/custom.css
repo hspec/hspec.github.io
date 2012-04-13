@@ -687,5 +687,7 @@ a.thumbnail:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 105,
 .hide{display:none;}
 .show{display:block;}
 .invisible{visibility:hidden;}
-.fail{color:red;}
-.success{color:green;}
+.fail{color:OrangeRed ;}
+.success{color:#00CC00;}
+.terminal{color:white;background-color:#2C415C;}
+pre{font-family:"Lucida Console",Monaco,monospace;font-size:80%;line-height:120%;}
