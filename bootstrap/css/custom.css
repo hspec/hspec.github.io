@@ -825,4 +825,6 @@ a.thumbnail:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 105,
 pre{font-family:"Lucida Console",Monaco,monospace;font-size:80%;line-height:120%;}
 .hs-comment{color:#999999;font-style:italic;}
 .hspec-lit{color:#6e3ca3;}
-.container{max-width:720px;}
+.container{max-width:760px;}
+.page-header a{color:inherit;text-decoration:none;}
+.footer{border-top:1px solid #E5E5E5;margin-top:45px;padding:35px 0 36px;}
