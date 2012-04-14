@@ -23,3 +23,14 @@ pre {
   font-size: 80%;
   line-height: 120%;
 }
+
+// s/^--.*/<span class="hs-comment">\0<\/span>
+.hs-comment {
+  color: @grayLight;
+  font-style: italic;
+}
+
+// s/"[^"]*"/<span class="hspec-lit">\0<\/span>/g
+.hspec-lit {
+  color: darken(@purple, 5%);
+}

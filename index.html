@@ -17,28 +17,30 @@ Behavior Driven Development in Haskell.  </em></blockquote>
 
 
 <pre>
--- file MathSpec.hs
+<span class="hs-comment">-- file MathSpec.hs</span>
+
 module MathSpec where
 
 import Test.Hspec.Monadic
 import Math
 
 main = hspecX $ do
-  describe "absolute" $ do
-    it "returns the original number when given a positive input" $
+  describe <span class="hspec-lit">"absolute"</span> $ do
+    it <span class="hspec-lit">"returns the original number when given a positive input"</span> $
       absolute 1 == 1
 
-    it "returns a positive number when given a negative input" $
+    it <span class="hspec-lit">"returns a positive number when given a negative input"</span> $
       absolute (-1) == 1
 
-    it "returns zero when given zero" $
+    it <span class="hspec-lit">"returns zero when given zero"</span> $
       absolute 0 == 0
 </pre>
 
 <h3>Step 2: Write some code</h3>
 
 <pre>
--- file Math.hs
+<span class="hs-comment">-- file Math.hs</span>
+
 module Math where
 
 absolute n = undefined
@@ -71,7 +73,8 @@ Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
 <h3>Step 4: Implement your desired behavior</h3>
 
 <pre>
--- file Math.hs
+<span class="hs-comment">-- file Math.hs</span>
+
 module Math where
 
 absolute n = if n < 0 then negate n else n

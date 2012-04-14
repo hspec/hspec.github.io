@@ -691,3 +691,5 @@ a.thumbnail:hover{border-color:#0088cc;-webkit-box-shadow:0 1px 4px rgba(0, 105,
 .success{color:#00CC00;}
 .terminal{color:white;background-color:#2C415C;}
 pre{font-family:"Lucida Console",Monaco,monospace;font-size:80%;line-height:120%;}
+.hs-comment{color:#999999;font-style:italic;}
+.hspec-lit{color:#6e3ca3;}
