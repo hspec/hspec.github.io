@@ -14,24 +14,23 @@
 <blockquote><em>hspec aims to be a simple, extendable, and useful tool for
 Behavior Driven Development in Haskell.  </em></blockquote>
 
-<h3>A report of hspec's behavior</h3>
-
+<h3 id="a-report-of-hspecs-behavior">A report of hspec’s behavior</h3>
 <pre class="terminal">
 
-the "describe" function<span class="success">
+the &quot;describe&quot; function<span class="success">
  - takes a description of what the behavior is for
  - groups behaviors for what's being described</span>
 
   a nested description<span class="success">
    - has it's own specs</span>
 
-the "it" function<span class="success">
+the &quot;it&quot; function<span class="success">
  - takes a description of a desired behavior
  - takes an example of that behavior
- - can use a Bool, HUnit Test, QuickCheck property, or "pending" as an example
+ - can use a Bool, HUnit Test, QuickCheck property, or &quot;pending&quot; as an example
  - will treat exceptions as failures</span>
 
-the "hspec" function<span class="success">
+the &quot;hspec&quot; function<span class="success">
  - displays a header for each thing being described
  - displays one row for each behavior
  - displays a row for each successfull, failed, or pending example
@@ -45,24 +44,24 @@ Bool as an example<span class="success">
  - is just an expression that evaluates to a Bool</span>
 
 HUnit TestCase as an example<span class="success">
- - is specified with the HUnit "TestCase" data constructor
+ - is specified with the HUnit &quot;TestCase&quot; data constructor
  - is the assumed example for IO() actions
  - will show the failed assertion text if available (e.g. assertBool)
  - will show the failed assertion expected and actual values if available (e.g. assertEqual)</span>
 
 QuickCheck property as an example<span class="success">
- - is specified with the "property" function
+ - is specified with the &quot;property&quot; function
  - will show what falsified it</span>
 
 pending as an example<span class="success">
- - is specified with the "pending" function and an explanation
+ - is specified with the &quot;pending&quot; function and an explanation
  - accepts a message to display in the report</span>
 
-the "hHspecWithFormat" function<span class="success">
- - can use the "silent" formatter to show no output
- - can use the "progress" formatter to show '..F...FF.F' style output
- - can use the "specdoc" formatter to show all examples (default)
- - can use the "failed_examples" formatter to show only failed examples</span>
+the &quot;hHspecWithFormat&quot; function<span class="success">
+ - can use the &quot;silent&quot; formatter to show no output
+ - can use the &quot;progress&quot; formatter to show '..F...FF.F' style output
+ - can use the &quot;specdoc&quot; formatter to show all examples (default)
+ - can use the &quot;failed_examples&quot; formatter to show only failed examples</span>
 
 quantify (an internal function)<span class="success">
  - returns an amount and a word given an amount and word
@@ -75,11 +74,12 @@ Finished in 0.0433 seconds, used 0.0320 seconds of CPU time
 32 examples, 0 failures</span>
 </pre>
 
+
+
 <footer class="footer">
 </footer>
 
 <a href="http://github.com/hspec/hspec"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://a248.e.akamai.net/assets.github.com/img/abad93f42020b733148435e2cd92ce15c542d320/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub"></a>
-
     </div>
   </body>
 </html>
