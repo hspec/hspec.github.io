@@ -88,7 +88,6 @@ Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
   [non-monadic][api-non-monadic] API.
 * Use [QuickCheck][api-quickcheck] and [HUnit][api-hunit] for your examples.
 
-
 [hspec-report]:     report.html
 [api-monadic]:      http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec-Monadic.html
                       "Haddock documentation for the monadic API"
