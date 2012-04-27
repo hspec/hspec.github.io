@@ -2,12 +2,12 @@
 @import "responsive.less";
 @baseFontSize:          18px;
 @baseLineHeight:        25px;
-@successColor: #00CE00;
+@successColor:          darken(#00CE00, 10%);
 
 .fail {
   // color: Tomato ;
   // color: Coral ;
-  color: OrangeRed ;
+  color: darken(orangered, 10%);
 }
 
 .success {
@@ -15,8 +15,8 @@
 }
 
 .terminal {
-  color: white;
-  background-color: #2C415C;
+  // color: white;
+  // background-color: #2C415C;
 }
 pre {
   font-family: "Lucida Console",Monaco,monospace;
@@ -32,7 +32,7 @@ pre {
 
 // s/"[^"]*"/<span class="hspec-lit">\0<\/span>/g
 .hspec-lit {
-  color: darken(@successColor, 10%);
+  color: @successColor;
 }
 
 .container {
