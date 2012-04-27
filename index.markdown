@@ -1,36 +1,11 @@
 ## Getting started
 ### Step 1: Describe your desired behavior
 
-
-<pre>
-<span class="hs-comment">-- file MathSpec.hs</span>
-
-module MathSpec where
-
-import Test.Hspec.Monadic
-import Math
-
-main = hspecX $ do
-  describe <span class="hspec-lit">"absolute"</span> $ do
-    it <span class="hspec-lit">"returns the original number when given a positive input"</span> $
-      absolute 1 == 1
-
-    it <span class="hspec-lit">"returns a positive number when given a negative input"</span> $
-      absolute (-1) == 1
-
-    it <span class="hspec-lit">"returns zero when given zero"</span> $
-      absolute 0 == 0
-</pre>
+$MathSpec$
 
 ### Step 2: Write some code
 
-<pre>
-<span class="hs-comment">-- file Math.hs</span>
-
-module Math where
-
-absolute n = undefined
-</pre>
+$Math0$
 
 ### Step 3: Run and watch it fail
 
@@ -58,13 +33,7 @@ Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
 
 ### Step 4: Implement your desired behavior
 
-<pre>
-<span class="hs-comment">-- file Math.hs</span>
-
-module Math where
-
-absolute n = if n < 0 then negate n else n
-</pre>
+$Math$
 
 ### Step 5: Run again and see it pass
 

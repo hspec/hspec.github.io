@@ -13,8 +13,8 @@ hakyll: hakyll.hs
 	ghc --make $^
 	rm hakyll.o hakyll.hi
 
-watch:
-	watchr -e "watch('.*\.markdown') {system 'make'}; watch('template/.*') {system 'make'}; watch('less/.*') {system 'make'}"
+watch: all
+	watchr -e "watch('.*\.markdown') {system 'make'}; watch('template/.*\.html') {system 'make'}; watch('less/.*\.less') {system 'make'}; watch('.*\.hs') {system 'make'}"
 
 clean:
 	-rm hakyll
