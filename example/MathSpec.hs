@@ -5,7 +5,7 @@ module MathSpec where
 import Test.Hspec.Monadic
 import Math
 
-main = hspecX $ do
+main = hspec $ do
   describe "absolute" $ do
     it "returns the original number when given a positive input" $
       absolute 1 == 1

@@ -23,7 +23,7 @@ module MathSpec where
 import Test.Hspec.Monadic
 import Math
 
-main = hspecX $ do
+main = hspec $ do
   describe <span class="hspec-lit">&quot;absolute&quot;</span> $ do
     it <span class="hspec-lit">&quot;returns the original number when given a positive input&quot;</span> $
       absolute 1 == 1
