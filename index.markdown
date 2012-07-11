@@ -24,11 +24,11 @@ Prelude.undefined
 Prelude.undefined
 
 3) absolute returns zero when given zero FAILED
-Prelude.undefined
+Prelude.undefined</span>
 
 Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
 
-3 examples, 3 failures</span>
+<span class="fail">3 examples, 3 failures</span>
 </pre>
 
 ### Step 4: Implement your desired behavior
@@ -43,11 +43,11 @@ $ runhaskell MathSpec.hs
 absolute
 <span class="success"> - returns the original number when given a positive input
  - returns a positive number when given a negative input
- - returns zero when given zero
+ - returns zero when given zero</span>
 
 Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
 
-3 examples, 0 failures</span>
+<span class="success">3 examples, 0 failures</span>
 </pre>
 
 ## Where to go from here?

@@ -52,9 +52,9 @@ quantify (an internal function)<span class="success">
  - returns an amount and a word given an amount and word
  - returns a singular word given the number 1
  - returns a plural word given a number greater than 1
- - returns a plural word given the number 0
+ - returns a plural word given the number 0</span>
 
 Finished in 0.0433 seconds, used 0.0320 seconds of CPU time
 
-32 examples, 0 failures</span>
+<span class="success">32 examples, 0 failures</span>
 </pre>
