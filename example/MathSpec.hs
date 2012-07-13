@@ -2,7 +2,7 @@
 
 module MathSpec where
 
-import Test.Hspec.Monadic
+import Test.Hspec
 import Math
 
 main = hspec $ do
