@@ -25,13 +25,13 @@ import Math
 main = hspec $ do
   describe <span class="hspec-lit">&quot;absolute&quot;</span> $ do
     it <span class="hspec-lit">&quot;returns the original number when given a positive input&quot;</span> $
-      absolute 1 == 1
+      absolute 1 `shouldBe` 1
 
     it <span class="hspec-lit">&quot;returns a positive number when given a negative input&quot;</span> $
-      absolute (-1) == 1
+      absolute (-1) `shouldBe` 1
 
     it <span class="hspec-lit">&quot;returns zero when given zero&quot;</span> $
-      absolute 0 == 0
+      absolute 0 `shouldBe` 0
 </pre>
 
 <h3 id="step-2-write-some-code">Step 2: Write some code</h3>
