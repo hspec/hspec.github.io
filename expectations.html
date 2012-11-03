@@ -231,9 +231,12 @@ evaluation order of it&#39;s arguments.</p>
 
 <p>Semantically an exceptional value contains a set of exceptions.  When we &quot;look&quot;
 at the value, one <em>representative</em> from the set is chosen in a
-non-deterministic way.
-For our simple example we can accommodate for that by combining <code>errorCall
-&quot;foo&quot;</code> and <code>errorCall &quot;bar&quot;</code> with <code>||</code>:</p>
+non-deterministic way.</p>
+
+<p>For our simple example the set of exceptions is <code>{ErrorCall &quot;foo&quot;, ErrorCall
+&quot;bar&quot;}</code>, so we have to be prepared to encounter any of those.  We can
+accommodate for this by combining <code>errorCall &quot;foo&quot;</code> and <code>errorCall &quot;bar&quot;</code> with
+<code>||</code>:</p>
 <div class="highlight"><pre><code class="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span> <span class="o">+</span> <span class="ne">error</span> <span class="s">&quot;bar&quot;</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
   <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">||</span><span class="p">)</span> <span class="o">&lt;$&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span> <span class="o">&lt;*&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;bar&quot;</span>
 </code></pre></div>
