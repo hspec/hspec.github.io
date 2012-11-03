@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- TODO: Restrict font variants to what we are actually using! -->
+    <link href='http://fonts.googleapis.com/css?family=Arimo:700italic,700,400italic,400|Cousine:700italic,700,400italic,400' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <title>Hspec: Behavior-Driven Development for Haskell</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="page-heading"><a href="index.html">Hspec: <span class="sub">Behavior-Driven Development for Haskell</span></a></h1>
+      <noscript>
+        <em>Tip: JavaScript is disabled in your browser.  If you enable JavaScript
+        you'll get some non-essential but convenient user interface
+        enhancements.</em>
+      </noscript>
+      <h2>Using QuickCheck with Hspec</h2>
+
+<p>You can use arbitrary QuickCheck properties with Hspec, but they must be
+wrapped with QuickCheck&#39;s <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#v:property"><code>property</code></a> function.  Here is an
+example:</p>
+<div class="highlight"><pre><code class="hspec">describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+  it <span class="sd">&quot;is inverse to show&quot;</span> <span class="o">$</span> <span class="n">property</span> <span class="o">$</span>
+    <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+</code></pre></div>
+<div>
+  <h5 class="foldable">Example code:</h5>
+  <div>
+  
+<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
+<span class="kr">import</span> <span class="nn">Test.Hspec</span>
+<span class="kr">import</span> <span class="nn">Test.QuickCheck</span>
+
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
+  describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    context <span class="sd">&quot;when used with integers&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      it <span class="sd">&quot;is inverse to show&quot;</span> <span class="o">$</span> <span class="n">property</span> <span class="o">$</span>
+        <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+</code></pre></div>
+
+  <pre>
+$ <kbd>runhaskell Spec.hs</kbd>
+  <samp>
+read
+  when used with integers
+<span class="hspec-success">    - is inverse to show
+</span>
+<span class="hspec-failure"></span>Finished in 0.0356 seconds, used 0.0200 seconds of CPU time
+
+<span class="hspec-success">1 example, 0 failures</span>
+</samp></pre>
+  </div>
+</div>
+
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery.scrollintoview.js"></script>
+    <script src="js/custom.js"></script>
+  </body>
+</html>
