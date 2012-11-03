@@ -34,7 +34,7 @@ here:</p>
 <p><code>shouldReturn</code> is a shortcut for that.  The above code can be simplified to:</p>
 <div class="highlight"><pre><code class="haskell"><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldReturn</span><span class="p">`</span> <span class="kt">Left</span> <span class="s">&quot;permission error&quot;</span>
 </code></pre></div>
-<h3>Require, that a predicate holds</h3>
+<h3>Require that a predicate holds</h3>
 
 <p><code>shouldSatisfy</code> requires that some predicate holds for a given value.</p>
 <div class="highlight"><pre><code class="haskell"><span class="nf">xs</span> <span class="p">`</span><span class="n">shouldSatisfy</span><span class="p">`</span> <span class="p">(</span><span class="n">not</span> <span class="o">.</span> <span class="n">null</span><span class="p">)</span>
