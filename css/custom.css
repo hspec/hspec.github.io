@@ -408,12 +408,8 @@ tt {
   font-size: 0.75rem;
   background-color: #F8F8F8;
 }
-p code,
-h2 code,
-h3 code,
-h4 code {
+p code {
   line-height: 1em;
-  font-weight: 400;
   margin-left: 2px;
   margin-left: 0.125rem;
   margin-right: 2px;

@@ -28,7 +28,7 @@ the outcome of code examples.</p>
 here:</p>
 <div class="highlight"><pre><code class="haskell"><span class="nf">x</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="mi">23</span>
 </code></pre></div>
-<p><code>shouldBe</code> can be used in combination with IO actions.  Here is an example:</p>
+<p><code>shouldBe</code> can be used in combination with <code>IO</code> actions.  Here is an example:</p>
 <div class="highlight"><pre><code class="haskell"><span class="nf">launchMissiles</span> <span class="o">&gt;&gt;=</span> <span class="p">(`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="kt">Left</span> <span class="s">&quot;permission error&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p><code>shouldReturn</code> is a shortcut for that.  The above code can be simplified to:</p>
@@ -211,7 +211,7 @@ $!!
 <span class="hspec-failure">1) evaluate forces exceptions FAILED
 did not get expected exception: ErrorCall
 
-</span>Finished in 0.0007 seconds, used 0.0000 seconds of CPU time
+</span>Finished in 0.0010 seconds, used 0.0000 seconds of CPU time
 
 <span class="hspec-failure">3 examples, 1 failure</span>
 </samp></pre>

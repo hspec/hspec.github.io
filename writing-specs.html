@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- TODO: Restrict font variants to what we are actually using! -->
+    <link href='http://fonts.googleapis.com/css?family=Arimo:700italic,700,400italic,400|Cousine:700italic,700,400italic,400' rel='stylesheet' type='text/css'>
+
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <title>Hspec: Behavior-Driven Development for Haskell</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="page-heading"><a href="index.html">Hspec: <span class="sub">Behavior-Driven Development for Haskell</span></a></h1>
+      <noscript>
+        <em>Tip: JavaScript is disabled in your browser.  If you enable JavaScript
+        you'll get some non-essential but convenient user interface
+        enhancements.</em>
+      </noscript>
+      <h2>Writing Tests with Hspec</h2>
+
+<h3>Using `describe` and `it`</h3>
+
+<p>Hspec provides an EDSL to describe tests.</p>
+
+<p><code>describe</code> and <code>it</code> are used to organize test with Hspec.</p>
+<div class="highlight"><pre><code class="hspec"><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
+  describe <span class="sd">&quot;Prelude.read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    it <span class="sd">&quot;can parse integers&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      <span class="n">read</span> <span class="s">&quot;10&quot;</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="p">(</span><span class="mi">10</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+
+    it <span class="sd">&quot;can parse floting-point numbers&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      <span class="n">read</span> <span class="s">&quot;2.5&quot;</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="p">(</span><span class="mf">2.5</span> <span class="ow">::</span> <span class="kt">Float</span><span class="p">)</span>
+</code></pre></div>
+<p>A spec can consist of multiple <code>describe</code>s, and <code>describe</code>s can be nested.</p>
+<div class="highlight"><pre><code class="hspec"><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
+  describe <span class="sd">&quot;Prelude&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      it <span class="sd">&quot;can parse integers&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+        <span class="n">read</span> <span class="s">&quot;10&quot;</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="p">(</span><span class="mi">10</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+
+    describe <span class="sd">&quot;head&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      it <span class="sd">&quot;returns the first element of a list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+        <span class="n">head</span> <span class="p">[</span><span class="mi">23</span> <span class="o">..</span><span class="p">]</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="mi">23</span>
+</code></pre></div>
+<h3>Using `context`</h3>
+
+<p><code>context</code> is just an alias for <code>describe</code>.  Use <code>context</code> with <em>when</em> or
+<em>with</em>, e.g.:</p>
+<div class="highlight"><pre><code class="hspec"><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
+  describe <span class="sd">&quot;parse&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    context <span class="sd">&quot;when provide with invalid input&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      it <span class="sd">&quot;returns a parse error&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+        <span class="n">parse</span> <span class="s">&quot;some invalid input&quot;</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="kt">Left</span> <span class="s">&quot;parse error&quot;</span>
+</code></pre></div>
+<h3>Running specs</h3>
+
+<p>The most common way to run a spec is with <code>hspec</code>, e.g.:</p>
+<div class="highlight"><pre><code class="text">main = hspec spec
+</code></pre></div>
+<p>You can customize how a spec is run by either providing command-line flags or
+by using <code>hspecWith</code> instead of <code>hspec</code>.</p>
+
+<p><em>Note: <code>hspecWith</code> is only available in the upcoming 1.4 release of Hspec.</em></p>
+
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+    <script src="js/jquery.scrollintoview.js"></script>
+    <script src="js/custom.js"></script>
+  </body>
+</html>

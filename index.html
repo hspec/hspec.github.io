@@ -17,92 +17,61 @@
         you'll get some non-essential but convenient user interface
         enhancements.</em>
       </noscript>
-      <h2>Getting started</h2>
+      <h1>User&#39;s Manual</h1>
 
-<h3>Step 1: Describe your desired behavior</h3>
-
-<div class="highlight"><pre><code class="hspec"><span class="c1">-- file MathSpec.hs</span>
-<span class="kr">module</span> <span class="nn">MathSpec</span> <span class="kr">where</span>
-
+<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
-<span class="kr">import</span> <span class="nn">Math</span>
+<span class="kr">import</span> <span class="nn">Test.QuickCheck</span>
 
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
-  describe <span class="sd">&quot;absolute&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-    it <span class="sd">&quot;returns the original number when given a positive input&quot;</span> <span class="o">$</span>
-      <span class="n">absolute</span> <span class="mi">1</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="mi">1</span>
+  describe <span class="sd">&quot;Prelude.head&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    it <span class="sd">&quot;returns the first element of a list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      <span class="n">head</span> <span class="p">[</span><span class="mi">23</span> <span class="o">..</span><span class="p">]</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="p">(</span><span class="mi">23</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
 
-    it <span class="sd">&quot;returns a positive number when given a negative input&quot;</span> <span class="o">$</span>
-      <span class="n">absolute</span> <span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="mi">1</span>
+    it <span class="sd">&quot;returns the first element of an *arbitrary* list&quot;</span> <span class="o">$</span>
+      <span class="n">property</span> <span class="o">$</span> <span class="nf">\</span><span class="n">x</span> <span class="n">xs</span> <span class="ow">-&gt;</span> <span class="n">head</span> <span class="p">(</span><span class="n">x</span><span class="kt">:</span><span class="n">xs</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
 
-    it <span class="sd">&quot;returns zero when given zero&quot;</span> <span class="o">$</span>
-      <span class="n">absolute</span> <span class="mi">0</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="mi">0</span>
+    it <span class="sd">&quot;throws an exception if used with an empty list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      <span class="n">head</span> <span class="kt">[]</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyException</span>
 </code></pre></div>
-
-<h3>Step 2: Write some code</h3>
-
-<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Math.hs</span>
-<span class="kr">module</span> <span class="nn">Math</span> <span class="kr">where</span>
-
-<span class="nf">absolute</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">undefined</span>
-</code></pre></div>
-
-<h3>Step 3: Run and watch it fail</h3>
 
 <pre>
-<code>$ runhaskell MathSpec.hs</code>
+$ <kbd>runhaskell Spec.hs</kbd>
 <samp>
-absolute
-<span class="hspec-failure">  - returns the original number when given a positive input FAILED [1]
-</span><span class="hspec-failure">  - returns a positive number when given a negative input FAILED [2]
-</span><span class="hspec-failure">  - returns zero when given zero FAILED [3]
+Prelude.head
+<span class="hspec-success">  - returns the first element of a list
+</span><span class="hspec-success">  - returns the first element of an *arbitrary* list
+</span><span class="hspec-success">  - throws an exception if used with an empty list
 </span>
-<span class="hspec-failure">1) absolute returns the original number when given a positive input FAILED (uncaught exception)
-GHC.Exception.ErrorCall (Prelude.undefined)
-
-2) absolute returns a positive number when given a negative input FAILED (uncaught exception)
-GHC.Exception.ErrorCall (Prelude.undefined)
-
-3) absolute returns zero when given zero FAILED (uncaught exception)
-GHC.Exception.ErrorCall (Prelude.undefined)
-
-</span>Finished in 0.0010 seconds, used 0.0000 seconds of CPU time
-
-<span class="hspec-failure">3 examples, 3 failures</span>
-</samp></pre>
-
-<h3>Step 4: Implement your desired behavior</h3>
-
-<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Math.hs</span>
-<span class="kr">module</span> <span class="nn">Math</span> <span class="kr">where</span>
-
-<span class="nf">absolute</span> <span class="n">n</span> <span class="ow">=</span> <span class="kr">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="kr">then</span> <span class="n">negate</span> <span class="n">n</span> <span class="kr">else</span> <span class="n">n</span>
-</code></pre></div>
-
-<h3>Step 5: Run again and see it pass</h3>
-
-<pre>
-<code>$ runhaskell MathSpec.hs</code>
-<samp>
-absolute
-<span class="hspec-success">  - returns the original number when given a positive input
-</span><span class="hspec-success">  - returns a positive number when given a negative input
-</span><span class="hspec-success">  - returns zero when given zero
-</span>
-<span class="hspec-failure"></span>Finished in 0.0008 seconds, used 0.0000 seconds of CPU time
+<span class="hspec-failure"></span>Finished in 0.0675 seconds, used 0.0240 seconds of CPU time
 
 <span class="hspec-success">3 examples, 0 failures</span>
 </samp></pre>
 
-<h2>Where to go from here?</h2>
+<h2>Table of contents</h2>
 
 <ul>
-<li>Use <a href="quickcheck.html">QuickCheck properties</a> with Hspec</li>
-<li>Use Hspec&#39;s <a href="expectations.html">expectation language</a></li>
-<li>Learn about <a href="hunit.html">interoperability with HUnit</a></li>
-<li>Have a look at the <a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec.html" title="Haddock documentation for the non-monadic API">API documentation</a>.</li>
-<li>Learn about <a href="https://github.com/hspec/hspec/tree/master/hspec-discover#readme" title="README for hspec-discover">automatic spec discovery</a></li>
-<li>Have a look at a <a href="report.html">report of hspec&#39;s behavior</a>.</li>
+<li><a href="getting-started.html">Five-step introduction</a></li>
+<li><a href="writing-specs.html">Writing tests with Hspec</a></li>
+<li><a href="quickcheck.html">Using QuickCheck with Hspec</a></li>
+<li><a href="expectations.html">Setting expectations</a></li>
+<li><a href="hunit.html">Interoperability with HUnit</a></li>
+</ul>
+
+<h2>About this manual</h2>
+
+<p>We currently brush this manual up for the upcoming <code>1.4.0</code> release of Hspec.
+If you want to help,
+<a href="https://github.com/hspec/hspec">grab the sources from GitHub</a> and
+<code>/join #hspec</code> on freenode!</p>
+
+<h2>Other resources</h2>
+
+<ul>
+<li><a href="https://github.com/hspec/hspec/tree/master/hspec-discover#readme">Automatic spec discovery with hspec-discover</a></li>
+<li><a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec.html">API documentation</a></li>
+<li><a href="report.html">A report of Hspec&#39;s behavior</a></li>
 </ul>
 
     </div>
