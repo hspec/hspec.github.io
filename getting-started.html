@@ -27,6 +27,7 @@
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Math</span>
 
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
   describe <span class="sd">&quot;absolute&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     it <span class="sd">&quot;returns the original number when given a positive input&quot;</span> <span class="o">$</span>
@@ -44,7 +45,8 @@
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Math.hs</span>
 <span class="kr">module</span> <span class="nn">Math</span> <span class="kr">where</span>
 
-<span class="nf">absolute</span> <span class="n">n</span> <span class="ow">=</span> <span class="n">undefined</span>
+<span class="nf">absolute</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
+<span class="nf">absolute</span> <span class="ow">=</span> <span class="n">undefined</span>
 </code></pre></div>
 
 <h3>Step 3: Run and watch it fail</h3>
@@ -76,6 +78,7 @@ GHC.Exception.ErrorCall (Prelude.undefined)
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Math.hs</span>
 <span class="kr">module</span> <span class="nn">Math</span> <span class="kr">where</span>
 
+<span class="nf">absolute</span> <span class="ow">::</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">Int</span>
 <span class="nf">absolute</span> <span class="n">n</span> <span class="ow">=</span> <span class="kr">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="kr">then</span> <span class="n">negate</span> <span class="n">n</span> <span class="kr">else</span> <span class="n">n</span>
 </code></pre></div>
 
