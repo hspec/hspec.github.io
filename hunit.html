@@ -30,7 +30,7 @@ seamlessly.</p>
 <div>
   <h5 class="foldable">Example code:</h5>
   <div>
-  
+
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Test.HUnit</span>
@@ -42,9 +42,8 @@ seamlessly.</p>
       <span class="n">reverse</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">@?=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">]</span>
 </code></pre></div>
 
-  <pre>
-$ <kbd>runhaskell Spec.hs</kbd>
-  <samp>
+<pre>$ <kbd>runhaskell Spec.hs</kbd>
+<samp>
 reverse
 <span class="hspec-success">  - reverses a list
 </span>
@@ -52,6 +51,7 @@ reverse
 
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
+
   </div>
 </div>
 
@@ -66,7 +66,7 @@ and HUnit tests can be freely intermixed.</p>
 <div>
   <h5 class="foldable">Example code:</h5>
   <div>
-  
+
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec.HUnit</span> <span class="p">(</span><span class="nf">fromHUnitTest</span><span class="p">)</span>
@@ -99,9 +99,8 @@ and HUnit tests can be freely intermixed.</p>
   <span class="mi">23</span> <span class="o">@?=</span> <span class="p">(</span><span class="mi">42</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
 </code></pre></div>
 
-  <pre>
-$ <kbd>runhaskell Spec.hs</kbd>
-  <samp>
+<pre>$ <kbd>runhaskell Spec.hs</kbd>
+<samp>
 some ordinary spec items
 <span class="hspec-success">  - returns the first element of a list
 </span>
@@ -113,10 +112,11 @@ some legacy HUnit tests
 expected: 42
  but got: 23
 
-</span>Finished in 0.0010 seconds, used 0.0000 seconds of CPU time
+</span>Finished in 0.0007 seconds, used 0.0000 seconds of CPU time
 
 <span class="hspec-failure">3 examples, 1 failure</span>
 </samp></pre>
+
   </div>
 </div>
 

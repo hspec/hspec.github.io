@@ -86,7 +86,7 @@ Those can be used in combination with <code>shouldThrow</code> to expect specifi
 <div>
   <h5 class="foldable">Example code:</h5>
   <div>
-  
+
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">System.IO.Error</span> <span class="p">(</span><span class="nf">isDoesNotExistError</span><span class="p">)</span>
@@ -99,17 +99,17 @@ Those can be used in combination with <code>shouldThrow</code> to expect specifi
         <span class="n">readFile</span> <span class="s">&quot;none-existing-file&quot;</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">isDoesNotExistError</span>
 </code></pre></div>
 
-  <pre>
-$ <kbd>runhaskell Spec.hs</kbd>
-  <samp>
+<pre>$ <kbd>runhaskell Spec.hs</kbd>
+<samp>
 readFile
   when specified file does not exist
 <span class="hspec-success">    - throws an exception
 </span>
-<span class="hspec-failure"></span>Finished in 0.0006 seconds, used 0.0000 seconds of CPU time
+<span class="hspec-failure"></span>Finished in 0.0007 seconds, used 0.0040 seconds of CPU time
 
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
+
   </div>
 </div>
 
@@ -130,7 +130,7 @@ used:</p>
 <div>
   <h5 class="foldable">Example code:</h5>
   <div>
-  
+
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 
@@ -142,9 +142,8 @@ used:</p>
         <span class="n">head</span> <span class="kt">[]</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;Prelude.head: empty list&quot;</span>
 </code></pre></div>
 
-  <pre>
-$ <kbd>runhaskell Spec.hs</kbd>
-  <samp>
+<pre>$ <kbd>runhaskell Spec.hs</kbd>
+<samp>
 head
   when applied to an empty list
 <span class="hspec-success">    - throws an exception
@@ -153,6 +152,7 @@ head
 
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
+
   </div>
 </div>
 
@@ -175,7 +175,7 @@ It does not look at the arguments of that contructor.</p>
 <div>
   <h5 class="foldable">Example code:</h5>
   <div>
-  
+
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Control.Exception</span> <span class="p">(</span><span class="nf">evaluate</span><span class="p">)</span>
@@ -196,9 +196,8 @@ It does not look at the arguments of that contructor.</p>
       <span class="p">(</span><span class="n">return</span> <span class="o">$!!</span> <span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;Prelude.undefined&quot;</span>
 </code></pre></div>
 
-  <pre>
-$ <kbd>runhaskell Spec.hs</kbd>
-  <samp>
+<pre>$ <kbd>runhaskell Spec.hs</kbd>
+<samp>
 div
 <span class="hspec-success">  - throws an exception if the second argument is 0
 </span>
@@ -215,6 +214,7 @@ did not get expected exception: ErrorCall
 
 <span class="hspec-failure">3 examples, 1 failure</span>
 </samp></pre>
+
   </div>
 </div>
 
@@ -251,7 +251,7 @@ But beware that GHC does not fully adhere to those semantics (see
 <div>
   <h5 class="foldable">Example code:</h5>
   <div>
-  
+
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Control.Applicative</span> <span class="p">((</span><span class="o">&lt;$&gt;</span><span class="p">),</span> <span class="p">(</span><span class="o">&lt;*&gt;</span><span class="p">))</span>
@@ -265,9 +265,8 @@ But beware that GHC does not fully adhere to those semantics (see
         <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">||</span><span class="p">)</span> <span class="o">&lt;$&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span> <span class="o">&lt;*&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;bar&quot;</span>
 </code></pre></div>
 
-  <pre>
-$ <kbd>runhaskell Spec.hs</kbd>
-  <samp>
+<pre>$ <kbd>runhaskell Spec.hs</kbd>
+<samp>
 an exceptional value
 <span class="hspec-success">  - contains a set of exceptions (semantically)
 </span>
@@ -275,6 +274,7 @@ an exceptional value
 
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
+
   </div>
 </div>
 

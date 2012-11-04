@@ -29,7 +29,7 @@ example:</p>
 <div>
   <h5 class="foldable">Example code:</h5>
   <div>
-  
+
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Test.QuickCheck</span>
@@ -42,17 +42,17 @@ example:</p>
         <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
 </code></pre></div>
 
-  <pre>
-$ <kbd>runhaskell Spec.hs</kbd>
-  <samp>
+<pre>$ <kbd>runhaskell Spec.hs</kbd>
+<samp>
 read
   when used with integers
 <span class="hspec-success">    - is inverse to show
 </span>
-<span class="hspec-failure"></span>Finished in 0.0375 seconds, used 0.0240 seconds of CPU time
+<span class="hspec-failure"></span>Finished in 0.0420 seconds, used 0.0240 seconds of CPU time
 
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
+
   </div>
 </div>
 
