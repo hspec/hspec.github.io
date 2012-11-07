@@ -105,7 +105,7 @@ readFile
   when specified file does not exist
 <span class="hspec-success">    - throws an exception
 </span>
-<span class="hspec-failure"></span>Finished in 0.0005 seconds, used 0.0000 seconds of CPU time
+<span class="hspec-failure"></span>Finished in 0.0005 seconds, used 0.0040 seconds of CPU time
 
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
@@ -120,12 +120,12 @@ readFile
 There is no <code>Eq</code> instance for <code>ErrorCall</code>, hence it is not possible to use <code>==</code>
 to expect a specific exception value of type <code>ErrorCall</code>.  The following won&#39;t
 work:</p>
-<div class="highlight"><pre><code class="haskell"><span class="ne">error</span> <span class="s">&quot;foo&quot;</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">==</span> <span class="kt">ErrorCall</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span>  <span class="c1">-- This won&#39;t work!</span>
+<div class="highlight"><pre><code class="haskell"><span class="nf">evaluat</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">==</span> <span class="kt">ErrorCall</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span>  <span class="c1">-- This won&#39;t work!</span>
 </code></pre></div>
 <p>Pattern matching can be used instead, but Hspec provides a combinator,
 <a href="http://hackage.haskell.org/packages/archive/hspec-expectations/latest/doc/html/Test-Hspec-Expectations.html#v:errorCall"><code>errorCall</code></a>, to make this more convenient.  Here is how it&#39;s
 used:</p>
-<div class="highlight"><pre><code class="haskell"><span class="ne">error</span> <span class="s">&quot;foo&quot;</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span>
+<div class="highlight"><pre><code class="haskell"><span class="nf">evaluat</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span>
 </code></pre></div>
 <div>
   <h5 class="foldable">Example code:</h5>
@@ -133,20 +133,19 @@ used:</p>
 
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
+<span class="kr">import</span> <span class="nn">Control.Exception</span> <span class="p">(</span><span class="nf">evaluate</span><span class="p">)</span>
 
 <span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
-  describe <span class="sd">&quot;head&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-    context <span class="sd">&quot;when applied to an empty list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-      it <span class="sd">&quot;throws an exception&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-        <span class="n">head</span> <span class="kt">[]</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;Prelude.head: empty list&quot;</span>
+  describe <span class="sd">&quot;Prelude.head&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    it <span class="sd">&quot;throws an exception if used with an empty list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      <span class="n">evaluate</span> <span class="p">(</span><span class="n">head</span> <span class="kt">[]</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;Prelude.head: empty list&quot;</span>
 </code></pre></div>
 
 <pre>$ <kbd>runhaskell Spec.hs</kbd>
 <samp>
-head
-  when applied to an empty list
-<span class="hspec-success">    - throws an exception
+Prelude.head
+<span class="hspec-success">  - throws an exception if used with an empty list
 </span>
 <span class="hspec-failure"></span>Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
 
@@ -163,15 +162,19 @@ head
 </code></pre></div>
 <p>However, <code>evaluate</code> only forces its argument to <em>weak head normal form</em>.  To
 better understand what that means, let&#39;s look at an other example:</p>
-<div class="highlight"><pre><code class="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;Prelude.undefined&quot;</span>
+<div class="highlight"><pre><code class="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
 </code></pre></div>
 <p>Here <code>evaluate</code> does not force the exception.  It only evaluates <code>&#39;a&#39; :
 undefined</code> until it encounters the first constructor &mdash; the <code>:</code> &mdash; and is done.
 It does not look at the arguments of that contructor.</p>
 
-<p><a href="http://hackage.haskell.org/packages/archive/deepseq/latest/doc/html/Control-DeepSeq.html#v:-36--33--33-"><code>$!!</code></a> can be used to force the exception:</p>
-<div class="highlight"><pre><code class="hspec"><span class="p">(</span><span class="n">return</span> <span class="o">$!!</span> <span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;Prelude.undefined&quot;</span>
+<p>Here <code>mapM evaluate</code> can be used to force the exception:</p>
+<div class="highlight"><pre><code class="hspec"><span class="nf">mapM</span> <span class="n">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
 </code></pre></div>
+<p>Note that contrary to popular belief <code>$!!</code> (or any other mechanism that relies
+on <code>seq</code>) does not work reliably!  (see the discussion at
+<del><a href="http://hackage.haskell.org/trac/ghc/ticket/5129">#5129</a></del>)</p>
+
 <div>
   <h5 class="foldable">Example code:</h5>
   <div>
@@ -179,7 +182,6 @@ It does not look at the arguments of that contructor.</p>
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Control.Exception</span> <span class="p">(</span><span class="nf">evaluate</span><span class="p">)</span>
-<span class="kr">import</span> <span class="nn">Control.DeepSeq</span> <span class="p">((</span><span class="o">$!!</span><span class="p">))</span>
 
 <span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
@@ -189,11 +191,11 @@ It does not look at the arguments of that contructor.</p>
 
   describe <span class="sd">&quot;evaluate&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     it <span class="sd">&quot;forces exceptions&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-      <span class="n">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;Prelude.undefined&quot;</span>
+      <span class="n">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
 
   describe <span class="sd">&quot;$!!&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     it <span class="sd">&quot;forces exceptions&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-      <span class="p">(</span><span class="n">return</span> <span class="o">$!!</span> <span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;Prelude.undefined&quot;</span>
+      <span class="n">mapM</span> <span class="n">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
 </code></pre></div>
 
 <pre>$ <kbd>runhaskell Spec.hs</kbd>
@@ -270,7 +272,7 @@ But beware that GHC does not fully adhere to those semantics (see
 an exceptional value
 <span class="hspec-success">  - contains a set of exceptions (semantically)
 </span>
-<span class="hspec-failure"></span>Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
+<span class="hspec-failure"></span>Finished in 0.0006 seconds, used 0.0000 seconds of CPU time
 
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>

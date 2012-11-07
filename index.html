@@ -23,6 +23,7 @@
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Test.QuickCheck</span>
+<span class="kr">import</span> <span class="nn">Control.Exception</span> <span class="p">(</span><span class="nf">evaluate</span><span class="p">)</span>
 
 <span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
@@ -34,7 +35,7 @@
       <span class="n">property</span> <span class="o">$</span> <span class="nf">\</span><span class="n">x</span> <span class="n">xs</span> <span class="ow">-&gt;</span> <span class="n">head</span> <span class="p">(</span><span class="n">x</span><span class="kt">:</span><span class="n">xs</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
 
     it <span class="sd">&quot;throws an exception if used with an empty list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-      <span class="n">head</span> <span class="kt">[]</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyException</span>
+      <span class="n">evaluate</span> <span class="p">(</span><span class="n">head</span> <span class="kt">[]</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyException</span>
 </code></pre></div>
 
 <pre>$ <kbd>runhaskell Spec.hs</kbd>
@@ -44,7 +45,7 @@ Prelude.head
 </span><span class="hspec-success">  - returns the first element of an *arbitrary* list
 </span><span class="hspec-success">  - throws an exception if used with an empty list
 </span>
-<span class="hspec-failure"></span>Finished in 0.0609 seconds, used 0.0240 seconds of CPU time
+<span class="hspec-failure"></span>Finished in 0.0618 seconds, used 0.0240 seconds of CPU time
 
 <span class="hspec-success">3 examples, 0 failures</span>
 </samp></pre>
