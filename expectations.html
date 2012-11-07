@@ -105,7 +105,7 @@ readFile
   when specified file does not exist
 <span class="hspec-success">    - throws an exception
 </span>
-<span class="hspec-failure"></span>Finished in 0.0005 seconds, used 0.0040 seconds of CPU time
+<span class="hspec-failure"></span>Finished in 0.0005 seconds, used 0.0000 seconds of CPU time
 
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
@@ -147,7 +147,7 @@ used:</p>
 Prelude.head
 <span class="hspec-success">  - throws an exception if used with an empty list
 </span>
-<span class="hspec-failure"></span>Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
+<span class="hspec-failure"></span>Finished in 0.0004 seconds, used 0.0040 seconds of CPU time
 
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
@@ -162,14 +162,15 @@ Prelude.head
 </code></pre></div>
 <p>However, <code>evaluate</code> only forces its argument to <em>weak head normal form</em>.  To
 better understand what that means, let&#39;s look at an other example:</p>
-<div class="highlight"><pre><code class="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
+<div class="highlight"><pre><code class="hspec"><span class="nf">evaluate</span> <span class="p">[</span><span class="n">undefined</span><span class="p">]</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
 </code></pre></div>
-<p>Here <code>evaluate</code> does not force the exception.  It only evaluates <code>&#39;a&#39; :
-undefined</code> until it encounters the first constructor &mdash; the <code>:</code> &mdash; and is done.
-It does not look at the arguments of that contructor.</p>
+<p>Here <code>evaluate</code> does not force the exception.  It only evaluates its argument
+until it encounters the first constructor.  <code>[undefined]</code> desugars to
+<code>undefined : []</code>, the constructor is <code>:</code>.  As soon as <code>evaluate</code> sees <code>:</code> it&#39;s
+done.  It does not look at the arguments of that constructor.</p>
 
-<p>Here <code>mapM evaluate</code> can be used to force the exception:</p>
-<div class="highlight"><pre><code class="hspec"><span class="nf">mapM</span> <span class="n">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
+<p><code>mapM</code> can be used to force the list elements.</p>
+<div class="highlight"><pre><code class="hspec"><span class="nf">mapM</span> <span class="n">evaluate</span> <span class="p">[</span><span class="n">undefined</span><span class="p">]</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
 </code></pre></div>
 <p>Note that contrary to popular belief <code>$!!</code> (or any other mechanism that relies
 on <code>seq</code>) does not work reliably!  (see the discussion at
@@ -190,12 +191,12 @@ on <code>seq</code>) does not work reliably!  (see the discussion at
       <span class="n">evaluate</span> <span class="p">(</span><span class="mi">1</span> <span class="p">`</span><span class="n">div</span><span class="p">`</span> <span class="mi">0</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyArithException</span>
 
   describe <span class="sd">&quot;evaluate&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-    it <span class="sd">&quot;forces exceptions&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-      <span class="n">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
+    it <span class="sd">&quot;forces undefined list items&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      <span class="n">evaluate</span> <span class="p">[</span><span class="n">undefined</span><span class="p">]</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
 
-  describe <span class="sd">&quot;$!!&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-    it <span class="sd">&quot;forces exceptions&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-      <span class="n">mapM</span> <span class="n">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
+  describe <span class="sd">&quot;mapM evaluate&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    it <span class="sd">&quot;forces undefined list items&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      <span class="n">mapM</span> <span class="n">evaluate</span> <span class="p">[</span><span class="n">undefined</span><span class="p">]</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
 </code></pre></div>
 
 <pre>$ <kbd>runhaskell Spec.hs</kbd>
@@ -204,12 +205,12 @@ div
 <span class="hspec-success">  - throws an exception if the second argument is 0
 </span>
 evaluate
-<span class="hspec-failure">  - forces exceptions FAILED [1]
+<span class="hspec-failure">  - forces undefined list items FAILED [1]
 </span>
-$!!
-<span class="hspec-success">  - forces exceptions
+mapM evaluate
+<span class="hspec-success">  - forces undefined list items
 </span>
-<span class="hspec-failure">1) evaluate forces exceptions FAILED
+<span class="hspec-failure">1) evaluate forces undefined list items FAILED
 did not get expected exception: ErrorCall
 
 </span>Finished in 0.0009 seconds, used 0.0000 seconds of CPU time
@@ -272,7 +273,7 @@ But beware that GHC does not fully adhere to those semantics (see
 an exceptional value
 <span class="hspec-success">  - contains a set of exceptions (semantically)
 </span>
-<span class="hspec-failure"></span>Finished in 0.0006 seconds, used 0.0000 seconds of CPU time
+<span class="hspec-failure"></span>Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
 
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
