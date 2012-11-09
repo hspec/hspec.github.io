@@ -47,7 +47,7 @@ seamlessly.</p>
 reverse
 <span class="hspec-success">  - reverses a list
 </span>
-<span class="hspec-failure"></span>Finished in 0.0004 seconds, used 0.0000 seconds of CPU time
+<span class="hspec-failure"></span>Finished in 0.0004 seconds, used 0.0040 seconds of CPU time
 
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
@@ -57,11 +57,9 @@ reverse
 
 <h3>Running a HUnit test suite with Hspec</h3>
 
-<p><em>Note: This will only work with the upcoming 1.4 release of Hspec.</em></p>
-
-<p>Hspec&#39;s <code>fromHUnitTest</code> can be used to convert a HUnit test suite to a <code>Spec</code>.
-This can be used to run existing HUnit tests with Hspec.  Ordinary spec items
-and HUnit tests can be freely intermixed.</p>
+<p>Hspec&#39;s <a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec-HUnit.html#v:fromHUnitTest"><code>fromHUnitTest</code></a> can be used to convert a HUnit test
+suite to a <code>Spec</code>.  This can be used to run existing HUnit tests with Hspec.
+Ordinary spec items and HUnit tests can be freely intermixed.</p>
 
 <div>
   <h5 class="foldable">Example code:</h5>

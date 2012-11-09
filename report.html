@@ -21,218 +21,208 @@
 
 <pre>
 Test.Hspec.Compat
-
   showType
-   - shows fully qualified name of type
-
+<span class="hspec-success">    - shows fully qualified name of type
+</span>
 Test.Hspec.Core
-
   pending
-   - specifies a pending example
-   - accepts an optional message, which is included in the report
-
+<span class="hspec-success">    - specifies a pending example
+</span><span class="hspec-success">    - accepts an optional message, which is included in the report
+</span>
   the "describe" function
-   - takes a description of what the behavior is for
-   - groups behaviors for what's being described
-
+<span class="hspec-success">    - takes a description of what the behavior is for
+</span><span class="hspec-success">    - groups behaviors for what's being described
+</span>
     a nested description
-     - has it's own specs
-
+<span class="hspec-success">      - has it's own specs
+</span>
   the "it" function
-   - takes a description of a desired behavior
-   - takes an example of that behavior
-   - can use a Bool, HUnit Test, QuickCheck property, or `pending` as an example
+<span class="hspec-success">    - takes a description of a desired behavior
+</span><span class="hspec-success">    - takes an example of that behavior
+</span><span class="hspec-pending">    - can use a Bool, HUnit Test, QuickCheck property, or `pending` as an example
      # PENDING: No reason given
-
+</span>
 Test.Hspec.Core.Type
-
   evaluateExample
-
     for Bool
-     - returns Success on True
-     - returns Fail on False
-     - propagates exceptions
-
+<span class="hspec-success">      - returns Success on True
+</span><span class="hspec-success">      - returns Fail on False
+</span><span class="hspec-success">      - propagates exceptions
+</span>
     for Expectation
-     - returns Success if all expectations hold
-     - returns Fail if an expectation does not hold
-     - propagates exceptions
-
+<span class="hspec-success">      - returns Success if all expectations hold
+</span><span class="hspec-success">      - returns Fail if an expectation does not hold
+</span><span class="hspec-success">      - propagates exceptions
+</span>
     for Property
-     - returns Success if property holds
-     - returns Fail if property does not hold
-     - shows what falsified it
-     - propagates exceptions
+<span class="hspec-success">      - returns Success if property holds
+</span><span class="hspec-success">      - returns Fail if property does not hold
+</span><span class="hspec-success">      - shows what falsified it
+</span><span class="hspec-pending">      - propagates exceptions
      # PENDING: this probaly needs a patch to QuickCheck
-
+</span>
 Test.Hspec.FailureReport
-
   writeFailureReport
-   - prints a warning on unexpected exceptions
-
+<span class="hspec-success">    - prints a warning on unexpected exceptions
+</span>
   GHCi
-   - keeps environment variables on :reload
-
+<span class="hspec-success">    - keeps environment variables on :reload
+</span>
 Test.Hspec.Formatters
-
   silent
-   - produces no output
-
+<span class="hspec-success">    - produces no output
+</span>
   failed_examples
-   - summarizes the time it takes to finish
-
+<span class="hspec-success">    - summarizes the time it takes to finish
+</span>
     displays a detailed list of failures
-     - prints all requirements that are not met
-     - prints the exception type for requirements that fail due to an uncaught exception
-     - prints all descriptions when a nested requirement fails
-   - summarizes the number of examples and failures
-   - shows summary in green if there are no failures
-   - shows summary in yellow if there are pending examples
-   - shows summary in red if there are failures
-   - shows summary in red if there are both failures and pending examples
-
+<span class="hspec-success">      - prints all requirements that are not met
+</span><span class="hspec-success">      - prints the exception type for requirements that fail due to an uncaught exception
+</span><span class="hspec-success">      - prints all descriptions when a nested requirement fails
+</span>
+<span class="hspec-success">    - summarizes the number of examples and failures
+</span><span class="hspec-success">    - shows summary in green if there are no failures
+</span><span class="hspec-success">    - shows summary in yellow if there are pending examples
+</span><span class="hspec-success">    - shows summary in red if there are failures
+</span><span class="hspec-success">    - shows summary in red if there are both failures and pending examples
+</span>
   progress
-   - produces '..F...FF.F' style output
-
+<span class="hspec-success">    - produces '..F...FF.F' style output
+</span>
     same as failed_examples
-     - summarizes the time it takes to finish
-
+<span class="hspec-success">      - summarizes the time it takes to finish
+</span>
       displays a detailed list of failures
-       - prints all requirements that are not met
-       - prints the exception type for requirements that fail due to an uncaught exception
-       - prints all descriptions when a nested requirement fails
-     - summarizes the number of examples and failures
-     - shows summary in green if there are no failures
-     - shows summary in yellow if there are pending examples
-     - shows summary in red if there are failures
-     - shows summary in red if there are both failures and pending examples
-
+<span class="hspec-success">        - prints all requirements that are not met
+</span><span class="hspec-success">        - prints the exception type for requirements that fail due to an uncaught exception
+</span><span class="hspec-success">        - prints all descriptions when a nested requirement fails
+</span>
+<span class="hspec-success">      - summarizes the number of examples and failures
+</span><span class="hspec-success">      - shows summary in green if there are no failures
+</span><span class="hspec-success">      - shows summary in yellow if there are pending examples
+</span><span class="hspec-success">      - shows summary in red if there are failures
+</span><span class="hspec-success">      - shows summary in red if there are both failures and pending examples
+</span>
   specdoc
-   - displays a header for each thing being described
-   - displays one row for each behavior
-   - prints an empty line before each group
-   - prints an empty line after each group
-   - outputs an empty line at the beginning (even for non-nested specs)
-   - displays a row for each successfull, failed, or pending example
-   - displays a '#' with an additional message for pending examples
-   - outputs failed examples in red, pending in yellow, and successful in green
+<span class="hspec-success">    - displays a header for each thing being described
+</span><span class="hspec-success">    - displays one row for each behavior
+</span><span class="hspec-success">    - prints an empty line before each group
+</span><span class="hspec-success">    - prints an empty line after each group
+</span><span class="hspec-success">    - outputs an empty line at the beginning (even for non-nested specs)
+</span><span class="hspec-success">    - displays a row for each successfull, failed, or pending example
+</span><span class="hspec-success">    - displays a '#' with an additional message for pending examples
+</span><span class="hspec-pending">    - outputs failed examples in red, pending in yellow, and successful in green
      # PENDING: No reason given
-
+</span>
     same as failed_examples
-     - summarizes the time it takes to finish
-
+<span class="hspec-success">      - summarizes the time it takes to finish
+</span>
       displays a detailed list of failures
-       - prints all requirements that are not met
-       - prints the exception type for requirements that fail due to an uncaught exception
-       - prints all descriptions when a nested requirement fails
-     - summarizes the number of examples and failures
-     - shows summary in green if there are no failures
-     - shows summary in yellow if there are pending examples
-     - shows summary in red if there are failures
-     - shows summary in red if there are both failures and pending examples
-
+<span class="hspec-success">        - prints all requirements that are not met
+</span><span class="hspec-success">        - prints the exception type for requirements that fail due to an uncaught exception
+</span><span class="hspec-success">        - prints all descriptions when a nested requirement fails
+</span>
+<span class="hspec-success">      - summarizes the number of examples and failures
+</span><span class="hspec-success">      - shows summary in green if there are no failures
+</span><span class="hspec-success">      - shows summary in yellow if there are pending examples
+</span><span class="hspec-success">      - shows summary in red if there are failures
+</span><span class="hspec-success">      - shows summary in red if there are both failures and pending examples
+</span>
 Test.Hspec.HUnit
-
   fromHUnitTest
-   - works for a TestCase
-   - works for a labeled TestCase
-   - works for a TestCase with nested labels
-   - works for a flat TestList
-   - works for a nested TestList
-
+<span class="hspec-success">    - works for a TestCase
+</span><span class="hspec-success">    - works for a labeled TestCase
+</span><span class="hspec-success">    - works for a TestCase with nested labels
+</span><span class="hspec-success">    - works for a flat TestList
+</span><span class="hspec-success">    - works for a nested TestList
+</span>
   HUnit TestCase as an example (deprecated!)
-   - is specified with the HUnit `TestCase` data constructor
-   - is the assumed example for IO() actions
-   - will show the failed assertion text if available (e.g. assertBool)
-   - will show the failed assertion expected and actual values if available (e.g. assertEqual)
-
+<span class="hspec-success">    - is specified with the HUnit `TestCase` data constructor
+</span><span class="hspec-success">    - is the assumed example for IO() actions
+</span><span class="hspec-success">    - will show the failed assertion text if available (e.g. assertBool)
+</span><span class="hspec-success">    - will show the failed assertion expected and actual values if available (e.g. assertEqual)
+</span>
 Test.Hspec.QuickCheck
-
   prop
-   - is a shortcut to use properties as examples
-
+<span class="hspec-success">    - is a shortcut to use properties as examples
+</span>
 Test.Hspec.Runner
-
   hspec
-   - runs a spec
-   - exits with exitFailure if not all examples pass
-   - suppresses output to stdout when evaluating examples
-   - prints an error message on unrecognized command-line options
-   - does not leak command-line flags to examples
-
+<span class="hspec-success">    - runs a spec
+</span><span class="hspec-success">    - exits with exitFailure if not all examples pass
+</span><span class="hspec-success">    - suppresses output to stdout when evaluating examples
+</span><span class="hspec-success">    - prints an error message on unrecognized command-line options
+</span><span class="hspec-success">    - does not leak command-line flags to examples
+</span>
     with --verbose
-     - does not suppress output to stdout
-
+<span class="hspec-success">      - does not suppress output to stdout
+</span>
     with --match
-     - only runs examples that match a given pattern
-     - can be given multiple times
-
+<span class="hspec-success">      - only runs examples that match a given pattern
+</span><span class="hspec-success">      - can be given multiple times
+</span>
     with --maximum-generated-tests=n
-     - tries QuickCheck properties n times
-
+<span class="hspec-success">      - tries QuickCheck properties n times
+</span>
     with --html
-     - produces HTML output
-     - marks successful examples with CSS class hspec-success
-     - marks pending examples with CSS class hspec-pending
-     - marks failed examples with CSS class hspec-failure
-
+<span class="hspec-success">      - produces HTML output
+</span><span class="hspec-success">      - marks successful examples with CSS class hspec-success
+</span><span class="hspec-success">      - marks pending examples with CSS class hspec-pending
+</span><span class="hspec-success">      - marks failed examples with CSS class hspec-failure
+</span>
   hspec (experimental features)
-   - stores a failure report in environment HSPEC_FAILURES
-
+<span class="hspec-success">    - stores a failure report in environment HSPEC_FAILURES
+</span>
     with --re-run
-     - re-runs examples that previously failed FAILED [1]
-
+<span class="hspec-success">      - re-runs examples that previously failed
+</span>
       when there is no failure report in the environment
-       - runs everything
-       - prints a warning to stderr
-
+<span class="hspec-success">        - runs everything
+</span><span class="hspec-success">        - prints a warning to stderr
+</span>
       when parsing of failure report fails
-       - runs everything
-       - prints a warning to stderr
-
+<span class="hspec-success">        - runs everything
+</span><span class="hspec-success">        - prints a warning to stderr
+</span>
   hspecWith
-   - returns a summary of the test run
-   - treats uncaught exceptions as failure
-   - uses the specdoc formatter by default
-   - can use a custom formatter
-
+<span class="hspec-success">    - returns a summary of the test run
+</span><span class="hspec-success">    - treats uncaught exceptions as failure
+</span><span class="hspec-success">    - uses the specdoc formatter by default
+</span><span class="hspec-success">    - can use a custom formatter
+</span>
 Test.Hspec.Util
-
   quantify
-   - returns an amount and a word given an amount and word
-   - returns a singular word given the number 1
-   - returns a plural word given a number greater than 1
-   - returns a plural word given the number 0
-
+<span class="hspec-success">    - returns an amount and a word given an amount and word
+</span><span class="hspec-success">    - returns a singular word given the number 1
+</span><span class="hspec-success">    - returns a plural word given a number greater than 1
+</span><span class="hspec-success">    - returns a plural word given the number 0
+</span>
   safeEvaluate
-   - returns Right on success
-   - returns Left on exception
-   - re-throws AsyncException
-
+<span class="hspec-success">    - returns Right on success
+</span><span class="hspec-success">    - returns Left on exception
+</span><span class="hspec-success">    - re-throws AsyncException
+</span>
   filterPredicate
-   - tries to match a pattern against a path
-   - is ambiguous
-   - succeeds on a partial match
-   - succeeds with a pattern that matches the message give in the failure list
-
+<span class="hspec-success">    - tries to match a pattern against a path
+</span><span class="hspec-success">    - is ambiguous
+</span><span class="hspec-success">    - succeeds on a partial match
+</span><span class="hspec-success">    - succeeds with a pattern that matches the message give in the failure list
+</span>
   formatRequirement
-   - creates a sentence from a subject and a requirement
-   - creates a sentence from a subject and a requirement when the subject consits of multiple words
-   - returns the requirement if no subject is given
-   - inserts context separated by commas
-   - joins components of a subject with a dot
-   - properly handles context after a subject that consists of several components
-
+<span class="hspec-success">    - creates a sentence from a subject and a requirement
+</span><span class="hspec-success">    - creates a sentence from a subject and a requirement when the subject consits of multiple words
+</span><span class="hspec-success">    - returns the requirement if no subject is given
+</span><span class="hspec-success">    - inserts context separated by commas
+</span><span class="hspec-success">    - joins components of a subject with a dot
+</span><span class="hspec-success">    - properly handles context after a subject that consists of several components
+</span>
   getEnv
-   - returns value of specified environment variable
-   - returns Nothing if specified environment variable is not set
+<span class="hspec-success">    - returns value of specified environment variable
+</span><span class="hspec-success">    - returns Nothing if specified environment variable is not set
+</span>
+<span class="hspec-failure"></span>Finished in 0.4490 seconds, used 0.1720 seconds of CPU time
 
-1) Test.Hspec.Runner - hspec (experimental features) - with --re-run - re-runs examples that previously failed FAILED
-["","<span class=\"hspec-success\">- example 1","</span><span class=\"hspec-failure\">- example 2 FAILED [1]","</span><span class=\"hspec-failure\">- example 3 FAILED [2]","</span><span class=\"hspec-success\">- example 4","</span><span class=\"hspec-failure\">- example 5 FAILED [3]","</span>","<span class=\"hspec-failure\">1) example 2 FAILED","","2) example 3 FAILED","","3) example 5 FAILED","","</span>Finished in 0.0007 seconds, used 0.0040 seconds of CPU time","","<span class=\"hspec-failure\">5 examples, 3 failures</span>"] did not satisfy predicate!
-
-Finished in 0.4615 seconds, used 0.1720 seconds of CPU time
-
-110 examples, 1 failure
+<span class="hspec-pending">110 examples, 0 failures, 3 pending</span>
 </pre>
 
     </div>
