@@ -43,14 +43,13 @@ class into a <code>Property</code>.  Here is an example:</p>
         <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
 </code></pre></div>
 
-<pre>$ <kbd>runhaskell Spec.hs</kbd>
+<pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
 read
   when used with ints
 <span class="hspec-success">    - is inverse to show
 </span>
-<span class="hspec-failure"></span>Finished in 0.0347 seconds, used 0.0200 seconds of CPU time
-
+<span class="hspec-failure"></span>Finished in 0.0796 seconds
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
 

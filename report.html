@@ -164,6 +164,9 @@ Test.Hspec.Runner
     with --maximum-generated-tests=n
 <span class="hspec-success">      - tries QuickCheck properties n times
 </span>
+    with --print-cpu-time
+<span class="hspec-success">      - includes used CPU time in summary
+</span>
     with --html
 <span class="hspec-success">      - produces HTML output
 </span><span class="hspec-success">      - marks successful examples with CSS class hspec-success
@@ -200,6 +203,7 @@ Test.Hspec.Util
   safeEvaluate
 <span class="hspec-success">    - returns Right on success
 </span><span class="hspec-success">    - returns Left on exception
+</span><span class="hspec-success">    - evaluates result to weak head normal form
 </span><span class="hspec-success">    - re-throws AsyncException
 </span>
   filterPredicate
@@ -220,9 +224,8 @@ Test.Hspec.Util
 <span class="hspec-success">    - returns value of specified environment variable
 </span><span class="hspec-success">    - returns Nothing if specified environment variable is not set
 </span>
-<span class="hspec-failure"></span>Finished in 0.4490 seconds, used 0.1720 seconds of CPU time
-
-<span class="hspec-pending">110 examples, 0 failures, 3 pending</span>
+<span class="hspec-failure"></span>Finished in 0.4761 seconds
+<span class="hspec-pending">112 examples, 0 failures, 3 pending</span>
 </pre>
 
     </div>

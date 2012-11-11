@@ -18,8 +18,9 @@
         enhancements.</em>
       </noscript>
       <h1>User&#39;s Manual</h1>
-<div class="highlight"><pre><code class="console"><span class="gp">$</span> cabal update <span class="o">&amp;&amp;</span> cabal install hspec
-</code></pre></div>
+
+<pre><kbd class="shell-input">cabal update && cabal install hspec</kbd></pre>
+
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Test.QuickCheck</span>
@@ -38,15 +39,14 @@
       <span class="n">evaluate</span> <span class="p">(</span><span class="n">head</span> <span class="kt">[]</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyException</span>
 </code></pre></div>
 
-<pre>$ <kbd>runhaskell Spec.hs</kbd>
+<pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
 Prelude.head
 <span class="hspec-success">  - returns the first element of a list
 </span><span class="hspec-success">  - returns the first element of an *arbitrary* list
 </span><span class="hspec-success">  - throws an exception if used with an empty list
 </span>
-<span class="hspec-failure"></span>Finished in 0.0412 seconds, used 0.0240 seconds of CPU time
-
+<span class="hspec-failure"></span>Finished in 0.0687 seconds
 <span class="hspec-success">3 examples, 0 failures</span>
 </samp></pre>
 
