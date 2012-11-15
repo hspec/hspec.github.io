@@ -20,27 +20,25 @@
       <h3>A report of hspec&#39;s behavior</h3>
 
 <pre>
-Test.Hspec.Compat
-  showType
-<span class="hspec-success">    - shows fully qualified name of type
-</span>
-Test.Hspec.Core
+Test.Hspec
   pending
 <span class="hspec-success">    - specifies a pending example
 </span><span class="hspec-success">    - accepts an optional message, which is included in the report
 </span>
-  the "describe" function
+  describe
 <span class="hspec-success">    - takes a description of what the behavior is for
 </span><span class="hspec-success">    - groups behaviors for what's being described
+</span><span class="hspec-success">    - can be nested
 </span>
-    a nested description
-<span class="hspec-success">      - has it's own specs
-</span>
-  the "it" function
+  it
 <span class="hspec-success">    - takes a description of a desired behavior
 </span><span class="hspec-success">    - takes an example of that behavior
 </span><span class="hspec-pending">    - can use a Bool, HUnit Test, QuickCheck property, or `pending` as an example
      # PENDING: No reason given
+</span>
+Test.Hspec.Compat
+  showType
+<span class="hspec-success">    - shows fully qualified name of type
 </span>
 Test.Hspec.Core.Type
   evaluateExample
@@ -58,8 +56,13 @@ Test.Hspec.Core.Type
 <span class="hspec-success">      - returns Success if property holds
 </span><span class="hspec-success">      - returns Fail if property does not hold
 </span><span class="hspec-success">      - shows what falsified it
+</span><span class="hspec-success">      - propagates UserInterrupt
 </span><span class="hspec-pending">      - propagates exceptions
      # PENDING: this probaly needs a patch to QuickCheck
+</span>
+    for pending
+<span class="hspec-success">      - returns Pending
+</span><span class="hspec-success">      - includes the optional reason
 </span>
 Test.Hspec.FailureReport
   writeFailureReport
@@ -154,6 +157,10 @@ Test.Hspec.Runner
 </span><span class="hspec-success">    - prints an error message on unrecognized command-line options
 </span><span class="hspec-success">    - does not leak command-line flags to examples
 </span>
+    with --help
+<span class="hspec-success">      - prints help
+</span><span class="hspec-success">      - constrains lines to 80 characters
+</span>
     with --verbose
 <span class="hspec-success">      - does not suppress output to stdout
 </span>
@@ -224,8 +231,8 @@ Test.Hspec.Util
 <span class="hspec-success">    - returns value of specified environment variable
 </span><span class="hspec-success">    - returns Nothing if specified environment variable is not set
 </span>
-<span class="hspec-failure"></span>Finished in 0.4761 seconds
-<span class="hspec-pending">112 examples, 0 failures, 3 pending</span>
+<span class="hspec-failure"></span>Finished in 0.4608 seconds
+<span class="hspec-pending">117 examples, 0 failures, 3 pending</span>
 </pre>
 
     </div>

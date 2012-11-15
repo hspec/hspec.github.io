@@ -58,11 +58,36 @@
 </code></pre></div>
 <h3>Running specs</h3>
 
-<p>The most common way to run a spec is with <code>hspec</code>, e.g.:</p>
+<p>The most common way to run a spec is with <a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec-Runner.html#v:hspec"><code>hspec</code></a>, e.g.:</p>
 <div class="highlight"><pre><code class="text">main = hspec spec
 </code></pre></div>
-<p>You can customize how a spec is run by either providing command-line flags or
-by using <code>hspecWith</code> instead of <code>hspec</code>.</p>
+<p>It is possible to customize how a spec is run by providing command-line flags.
+You can get a list of supported flags by passing <code>--help</code> to your test driver:</p>
+
+<pre>
+<kbd class="shell-input">runhaskell Spec.hs --help</kbd>
+<samp>Usage: Spec.hs [OPTION]...
+
+OPTIONS
+                --help              display this help and exit
+  -v            --verbose           do not suppress output to stdout when
+                                    evaluating examples
+  -m PATTERN    --match=PATTERN     only run examples that match given PATTERN
+                --color[=WHEN]      colorize the output.  WHEN defaults to
+                                    `always' or can be `never' or `auto'.
+  -f FORMATTER  --format=FORMATTER  Use a custom formatter.  This can be one of:
+                                      specdoc
+                                      progress
+                                      failed-examples
+                                      silent
+  -a N          --qc-max-success=N  maximum number of successful tests before a
+                                    QuickCheck property succeeds
+                --print-cpu-time    include used CPU time in summary
+</samp>
+</pre>
+
+<p>Using <a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec-Runner.html#v:hspecWith"><code>hspecWith</code></a> instead of <code>hspec</code> gives even more control
+over how a spec is run.</p>
 
     </div>
 
