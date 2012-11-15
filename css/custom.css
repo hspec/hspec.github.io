@@ -63,7 +63,7 @@
 .highlight .s{color:#d14;}
 .highlight .sd{color:#d14;}
 *{margin:0;padding:0;}
-html{font-family:Arimo,"Liberation Sans",Arial,sans-serif;overflow-y:scroll;}
+html{font-family:"Liberation Sans",Arial,sans-serif;overflow-y:scroll;}
 body{font-size:14px;font-size:0.875rem;line-height:20px;line-height:1.25rem;color:#333;background-color:#fff;}
 p,ul,ol,pre,h1,h2,h3,h4,h5,h6{margin-bottom:20px;margin-bottom:1.25rem;}
 h1,h2,h3{margin-top:40px;margin-top:2.5rem;}
@@ -75,7 +75,7 @@ h4{font-size:14px;font-size:0.875rem;}
 h5{font-size:14px;font-size:0.875rem;}
 h5{font-weight:400;}
 h2{margin-top:39px;margin-top:2.4375rem;border-bottom:1px solid #CCC;border-bottom:0.0625rem solid #cccccc;}
-pre,code,kbd,samp,tt{font-family:Cousine,"Liberation Mono","Courier New",monospace;font-size:12px;font-size:0.75rem;background-color:#F8F8F8;}
+pre,code,kbd,samp,tt{font-family:"Liberation Mono","Courier New",monospace;font-size:12px;font-size:0.75rem;background-color:#F8F8F8;}
 p code{line-height:1em;margin-left:2px;margin-left:0.125rem;margin-right:2px;margin-right:0.125rem;padding-left:5px;padding-left:0.3125rem;padding-right:5px;padding-right:0.3125rem;border:1px dotted #CCC;border:0.0625rem dotted #cccccc;}
 pre{white-space:pre-wrap;word-wrap:break-word;padding:9px;padding:0.5625rem;border:1px dotted #CCC;border:0.0625rem dotted #cccccc;}
 .hspec-failure{color:#cc3700;}
