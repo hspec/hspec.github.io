@@ -52,7 +52,7 @@
 <div class="highlight"><pre><code class="hspec"><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
   describe <span class="sd">&quot;parse&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-    context <span class="sd">&quot;when provide with invalid input&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    context <span class="sd">&quot;when provided with invalid input&quot;</span> <span class="o">$</span> <span class="kr">do</span>
       it <span class="sd">&quot;returns a parse error&quot;</span> <span class="o">$</span> <span class="kr">do</span>
         <span class="n">parse</span> <span class="s">&quot;some invalid input&quot;</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="kt">Left</span> <span class="s">&quot;parse error&quot;</span>
 </code></pre></div>
