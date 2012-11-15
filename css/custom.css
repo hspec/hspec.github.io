@@ -88,3 +88,5 @@ h1.page-heading .sub{color:gray;}
 .foldable-control{cursor:pointer;background-image:url("plus.png");background-repeat:no-repeat;background-position:left;margin-left:-14px;padding-left:14px;}
 .foldable-control.expanded{background-image:url("minus.png");}
 kbd.shell-input:before{content:"$ ";}
+a{color:#4183C4;text-decoration:none;}
+a:hover{text-decoration:underline;}
