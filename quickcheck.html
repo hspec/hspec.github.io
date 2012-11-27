@@ -20,9 +20,9 @@
       <h2>Using QuickCheck with Hspec</h2>
 
 <p>You can use arbitrary QuickCheck properties with Hspec, but they must be of
-type <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#t:Property"><code>Property</code></a>.  QuickCheck&#39;s <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#v:property"><code>property</code></a> function
-can be used to turn anything that is a member of the <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck-Property.html#t:Testable"><code>Testable</code></a>
-class into a <code>Property</code>.  Here is an example:</p>
+type <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#t:Property"><code>Property</code></a>.  QuickCheck&#39;s <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#v:property"><code>property</code></a> function can be used to
+turn anything that is a member of the <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck-Property.html#t:Testable"><code>Testable</code></a> class into a
+<a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#t:Property"><code>Property</code></a>.  Here is an example:</p>
 <div class="highlight"><pre><code class="hspec">describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
   it <span class="sd">&quot;is inverse to show&quot;</span> <span class="o">$</span> <span class="n">property</span> <span class="o">$</span>
     <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>

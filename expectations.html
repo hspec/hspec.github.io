@@ -163,7 +163,7 @@ better understand what that means, let&#39;s look at an other example:</p>
 <div class="highlight"><pre><code class="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
 </code></pre></div>
 <p>Here <code>evaluate</code> does not force the exception.  It only evaluates its argument
-until it encounters the first constructor.  Here the contains is <code>:</code>, as soon
+until it encounters the first constructor.  Here the constructor is <code>:</code>, as soon
 as <code>evaluate</code> sees <code>:</code> it&#39;s done.  It does not look at the arguments of that
 constructor.</p>
 
