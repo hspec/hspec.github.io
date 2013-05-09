@@ -105,7 +105,7 @@ readFile
   when specified file does not exist
 <span class="hspec-success">    - throws an exception
 </span>
-<span class="hspec-failure"></span>Finished in 0.0005 seconds
+Finished in 0.0004 seconds
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
 
@@ -146,7 +146,7 @@ used:</p>
 Prelude.head
 <span class="hspec-success">  - throws an exception if used with an empty list
 </span>
-<span class="hspec-failure"></span>Finished in 0.0004 seconds
+Finished in 0.0003 seconds
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
 
@@ -209,10 +209,12 @@ evaluate
 evaluate . force
 <span class="hspec-success">  - forces exceptions
 </span>
-<span class="hspec-failure">1) evaluate forces exceptions FAILED
+1) <span class="hspec-failure">evaluate forces exceptions FAILED
 did not get expected exception: ErrorCall
+</span>
+Randomized with seed 4611685480185726835
 
-</span>Finished in 0.0010 seconds
+Finished in 0.0013 seconds
 <span class="hspec-failure">3 examples, 1 failure</span>
 </samp></pre>
 
@@ -271,7 +273,7 @@ But beware that GHC does not fully adhere to those semantics (see
 an exceptional value
 <span class="hspec-success">  - contains a set of exceptions (semantically)
 </span>
-<span class="hspec-failure"></span>Finished in 0.0004 seconds
+Finished in 0.0003 seconds
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
 

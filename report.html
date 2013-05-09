@@ -23,21 +23,33 @@
 Test.Hspec
   pending
 <span class="hspec-success">    - specifies a pending example
-</span><span class="hspec-success">    - accepts an optional message, which is included in the report
+</span>
+  pending
+<span class="hspec-success">    - specifies a pending example with a reason for why it's pending
 </span>
   describe
 <span class="hspec-success">    - takes a description of what the behavior is for
 </span><span class="hspec-success">    - groups behaviors for what's being described
 </span><span class="hspec-success">    - can be nested
 </span>
+    when no description is given
+<span class="hspec-success">      - uses a default description
+</span>
   it
 <span class="hspec-success">    - takes a description of a desired behavior
 </span><span class="hspec-success">    - takes an example of that behavior
-</span><span class="hspec-pending">    - can use a Bool, HUnit Test, QuickCheck property, or `pending` as an example
-     # PENDING: No reason given
+</span>
+    when no description is given
+<span class="hspec-success">      - uses a default description
+</span>
+  example
+<span class="hspec-success">    - fixes the type of an expectation
 </span>
 Test.Hspec.Compat
   showType
+<span class="hspec-success">    - shows unqualified name of type
+</span>
+  showFullType (currently unused)
 <span class="hspec-success">    - shows fully qualified name of type
 </span>
 Test.Hspec.Core.Type
@@ -52,17 +64,34 @@ Test.Hspec.Core.Type
 </span><span class="hspec-success">      - returns Fail if an expectation does not hold
 </span><span class="hspec-success">      - propagates exceptions
 </span>
+      when used with `pending`
+<span class="hspec-success">        - returns Pending
+</span>
+      when used with `pendingWith`
+<span class="hspec-success">        - includes the optional reason
+</span>
     for Property
 <span class="hspec-success">      - returns Success if property holds
 </span><span class="hspec-success">      - returns Fail if property does not hold
 </span><span class="hspec-success">      - shows what falsified it
-</span><span class="hspec-success">      - propagates UserInterrupt
+</span>
+      when used with shouldBe
+<span class="hspec-success">        - shows what falsified it
+</span>
+<span class="hspec-success">      - propagates UserInterrupt
 </span><span class="hspec-pending">      - propagates exceptions
      # PENDING: this probaly needs a patch to QuickCheck
 </span>
-    for pending
-<span class="hspec-success">      - returns Pending
-</span><span class="hspec-success">      - includes the optional reason
+      when used with `pending`
+<span class="hspec-success">        - returns Pending
+</span>
+      when used with `pendingWith`
+<span class="hspec-success">        - includes the optional reason
+</span>
+  Expectation
+    as a QuickCheck property
+<span class="hspec-success">      - can be quantified
+</span><span class="hspec-success">      - can be used with expecatations/HUnit assertions
 </span>
 Test.Hspec.FailureReport
   writeFailureReport
@@ -153,23 +182,51 @@ Test.Hspec.Runner
   hspec
 <span class="hspec-success">    - runs a spec
 </span><span class="hspec-success">    - exits with exitFailure if not all examples pass
-</span><span class="hspec-success">    - suppresses output to stdout when evaluating examples
+</span><span class="hspec-success">    - allows output to stdout
 </span><span class="hspec-success">    - prints an error message on unrecognized command-line options
 </span><span class="hspec-success">    - does not leak command-line flags to examples
+</span>
+    when interrupted with ctrl-c
+<span class="hspec-success">      - prints summary immediately
+</span><span class="hspec-success">      - throws UserInterrupt
 </span>
     with --help
 <span class="hspec-success">      - prints help
 </span><span class="hspec-success">      - constrains lines to 80 characters
 </span>
-    with --verbose
-<span class="hspec-success">      - does not suppress output to stdout
+    with --dry-run
+<span class="hspec-success">      - produces a report
+</span><span class="hspec-success">      - does not verify anything
+</span>
+    with --fail-fast
+<span class="hspec-success">      - stops after first failure
+</span><span class="hspec-success">      - works for nested specs
 </span>
     with --match
 <span class="hspec-success">      - only runs examples that match a given pattern
 </span><span class="hspec-success">      - can be given multiple times
 </span>
+    with --format
+<span class="hspec-success">      - uses specified formatter
+</span>
+      when given an invalid argument
+<span class="hspec-success">        - prints an error message to stderr
+</span>
     with --maximum-generated-tests=n
 <span class="hspec-success">      - tries QuickCheck properties n times
+</span>
+      when given an invalid argument
+<span class="hspec-success">        - prints an error message to stderr
+</span>
+    with --seed
+<span class="hspec-success">      - uses specified seed
+</span>
+      when run with --re-run
+<span class="hspec-success">        - takes precedence
+</span>
+      when given an invalid argument
+<span class="hspec-success">        - prints an error message to stderr
+</span><span class="hspec-success">        - exits with exitFailure
 </span>
     with --print-cpu-time
 <span class="hspec-success">      - includes used CPU time in summary
@@ -181,10 +238,11 @@ Test.Hspec.Runner
 </span><span class="hspec-success">      - marks failed examples with CSS class hspec-failure
 </span>
   hspec (experimental features)
-<span class="hspec-success">    - stores a failure report in environment HSPEC_FAILURES
+<span class="hspec-success">    - stores a failure report in environment
 </span>
     with --re-run
 <span class="hspec-success">      - re-runs examples that previously failed
+</span><span class="hspec-success">      - reuses the same seed
 </span>
       when there is no failure report in the environment
 <span class="hspec-success">        - runs everything
@@ -199,15 +257,26 @@ Test.Hspec.Runner
 </span><span class="hspec-success">    - treats uncaught exceptions as failure
 </span><span class="hspec-success">    - uses the specdoc formatter by default
 </span><span class="hspec-success">    - can use a custom formatter
+</span><span class="hspec-success">    - does not let escape error thunks from failure messages
+</span>
+Test.Hspec.Timer
+  timer action returned by newTimer
+<span class="hspec-success">    - returns False
+</span>
+    after specified time
+<span class="hspec-success">      - returns True
 </span>
 Test.Hspec.Util
-  quantify
+  pluralize
 <span class="hspec-success">    - returns an amount and a word given an amount and word
 </span><span class="hspec-success">    - returns a singular word given the number 1
 </span><span class="hspec-success">    - returns a plural word given a number greater than 1
 </span><span class="hspec-success">    - returns a plural word given the number 0
 </span>
-  safeEvaluate
+  lineBreaksAt
+<span class="hspec-success">    - inserts line breaks at word boundaries
+</span>
+  safeTry
 <span class="hspec-success">    - returns Right on success
 </span><span class="hspec-success">    - returns Left on exception
 </span><span class="hspec-success">    - evaluates result to weak head normal form
@@ -231,8 +300,14 @@ Test.Hspec.Util
 <span class="hspec-success">    - returns value of specified environment variable
 </span><span class="hspec-success">    - returns Nothing if specified environment variable is not set
 </span>
-<span class="hspec-failure"></span>Finished in 0.4608 seconds
-<span class="hspec-pending">117 examples, 0 failures, 3 pending</span>
+  stdGenToInteger
+<span class="hspec-success">    - is inverse to stdGenFromInteger
+</span>
+  stdGenFromInteger
+<span class="hspec-success">    - is inverse to stdGenToInteger
+</span>
+Finished in 0.3909 seconds
+<span class="hspec-pending">144 examples, 0 failures, 2 pending</span>
 </pre>
 
     </div>

@@ -70,19 +70,21 @@ You can get a list of supported flags by passing <code>--help</code> to your tes
 
 OPTIONS
                 --help              display this help and exit
-  -v            --verbose           do not suppress output to stdout when
-                                    evaluating examples
   -m PATTERN    --match=PATTERN     only run examples that match given PATTERN
-                --color[=WHEN]      colorize the output.  WHEN defaults to
-                                    `always' or can be `never' or `auto'.
-  -f FORMATTER  --format=FORMATTER  Use a custom formatter.  This can be one of:
-                                      specdoc
-                                      progress
-                                      failed-examples
-                                      silent
+                --color[=WHEN]      colorize the output; WHEN defaults to
+                                    `always' or can be `never' or `auto'
+  -f FORMATTER  --format=FORMATTER  use a custom formatter; this can be one of:
+                                       specdoc
+                                       progress
+                                       failed-examples
+                                       silent
   -a N          --qc-max-success=N  maximum number of successful tests before a
                                     QuickCheck property succeeds
+                --seed=N            used seed for QuickCheck properties
                 --print-cpu-time    include used CPU time in summary
+                --dry-run           pretend that everything passed; don't verify
+                                    anything
+                --fail-fast         abort on first failure
 </samp>
 </pre>
 
