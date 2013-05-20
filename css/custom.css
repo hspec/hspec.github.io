@@ -78,7 +78,7 @@ h5{font-size:14px;font-size:0.875rem;}
 h5{font-weight:400;}
 h2{margin-top:39px;margin-top:2.4375rem;border-bottom:1px solid #d4d4d4;border-bottom:0.0625rem solid #d4d4d4;}
 pre,code,kbd,samp,tt{font-family:"Liberation Mono","Courier New",monospace;font-size:12px;font-size:0.75rem;background-color:#F8F8F8;}
-p code{line-height:1em;margin-left:2px;margin-left:0.125rem;margin-right:2px;margin-right:0.125rem;padding-left:5px;padding-left:0.3125rem;padding-right:5px;padding-right:0.3125rem;border-radius:3px;border:1px solid #d4d4d4;border:0.0625rem solid #d4d4d4;}
+p code,li code{line-height:1em;margin-left:2px;margin-left:0.125rem;margin-right:2px;margin-right:0.125rem;padding-left:5px;padding-left:0.3125rem;padding-right:5px;padding-right:0.3125rem;border-radius:3px;border:1px solid #d4d4d4;border:0.0625rem solid #d4d4d4;}
 pre{white-space:pre-wrap;word-wrap:break-word;padding:9px;padding:0.5625rem;border-radius:3px;border:1px solid #d4d4d4;border:0.0625rem solid #d4d4d4;}
 .hspec-failure{color:#cc3700;}
 .hspec-pending{color:DarkGoldenRod;}
