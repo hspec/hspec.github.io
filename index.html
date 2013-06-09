@@ -24,6 +24,19 @@
       </noscript>
       <h1>User&#39;s Manual</h1>
 
+<p>Hspec is a testing framework for <a href="http://www.haskell.org/">Haskell</a>.  It is
+roughly based on the Ruby library <a href="http://rspec.info/">RSpec</a>.  Some of Hspec&#39;s
+distinctive features are:</p>
+
+<ul>
+<li>a friendly DSL for defining tests</li>
+<li>integration with QuickCheck and HUnit</li>
+<li>parallel test execution</li>
+<li>automatic discovery of test files</li>
+</ul>
+
+<p>An example is worth a thousand words, so here we go:</p>
+
 <pre><kbd class="shell-input">cabal update && cabal install hspec</kbd></pre>
 
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
@@ -66,19 +79,19 @@ Finished in 0.0015 seconds
 <li><a href="hspec-discover.html">Automatic spec discovery</a></li>
 </ul>
 
-<h2>About this manual</h2>
-
-<p>We continually improve this manual.  If you want to help,
-<a href="https://github.com/hspec/hspec">grab the sources from GitHub</a> and
-<code>/join #hspec</code> on freenode!</p>
-
 <h2>Other resources</h2>
 
 <ul>
-<li><a href="https://github.com/hspec/hspec.vim#readme">Vim syntax file for Hspec</a></li>
+<li><a href="https://github.com/hspec/hspec">Hspec on GitHub</a></li>
+<li><a href="http://hackage.haskell.org/package/hspec">Hspec on Hackage</a></li>
 <li><a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec.html">API documentation</a></li>
+<li><a href="https://github.com/hspec/hspec.vim#readme">Vim syntax file for Hspec</a></li>
 <li><a href="report.html">A report of Hspec&#39;s behavior</a></li>
 </ul>
+
+<h2>Support</h2>
+
+<p>Want to chat? <code>/join #hspec</code> on freenode!</p>
 
     </div>
 
