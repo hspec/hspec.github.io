@@ -76,8 +76,8 @@ You can get a list of supported flags by passing <code>--help</code> to your tes
 OPTIONS
                 --help              display this help and exit
   -m PATTERN    --match=PATTERN     only run examples that match given PATTERN
-                --color[=WHEN]      colorize the output; WHEN defaults to
-                                    `always' or can be `never' or `auto'
+                --color             colorize the output
+                --no-color          do not colorize the output
   -f FORMATTER  --format=FORMATTER  use a custom formatter; this can be one of:
                                        specdoc
                                        progress
@@ -90,6 +90,8 @@ OPTIONS
                 --dry-run           pretend that everything passed; don't verify
                                     anything
                 --fail-fast         abort on first failure
+  -r            --rerun             rerun all examples that failed in the
+                                    previously test run (only works in GHCi)
 </samp>
 </pre>
 

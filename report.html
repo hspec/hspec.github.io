@@ -50,6 +50,10 @@ Test.Hspec
   example
 <span class="hspec-success">    - fixes the type of an expectation
 </span>
+  parallel
+<span class="hspec-success">    - marks examples for parallel execution
+</span><span class="hspec-success">    - is applied recursively
+</span>
 Test.Hspec.Compat
   showType
 <span class="hspec-success">    - shows unqualified name of type
@@ -179,6 +183,16 @@ Test.Hspec.HUnit
 </span><span class="hspec-success">    - will show the failed assertion text if available (e.g. assertBool)
 </span><span class="hspec-success">    - will show the failed assertion expected and actual values if available (e.g. assertEqual)
 </span>
+Test.Hspec.Options
+  parseOptions
+<span class="hspec-success">    - sets optionsColorMode to ColorAuto
+</span>
+    with --no-color
+<span class="hspec-success">      - sets optionsColorMode to ColorNever
+</span>
+    with --color
+<span class="hspec-success">      - sets optionsColorMode to ColorAlways
+</span>
 Test.Hspec.QuickCheck
   prop
 <span class="hspec-success">    - is a shortcut to use properties as examples
@@ -189,7 +203,22 @@ Test.Hspec.Runner
 </span><span class="hspec-success">    - exits with exitFailure if not all examples pass
 </span><span class="hspec-success">    - allows output to stdout
 </span><span class="hspec-success">    - prints an error message on unrecognized command-line options
-</span><span class="hspec-success">    - does not leak command-line flags to examples
+</span><span class="hspec-success">    - stores a failure report in the environment
+</span>
+    with --rerun
+<span class="hspec-success">      - reruns examples that previously failed
+</span><span class="hspec-success">      - reuses the same seed
+</span><span class="hspec-success">      - reuses same --qc-max-success
+</span>
+      when there is no failure report in the environment
+<span class="hspec-success">        - runs everything
+</span><span class="hspec-success">        - prints a warning to stderr
+</span>
+      when parsing of failure report fails
+<span class="hspec-success">        - runs everything
+</span><span class="hspec-success">        - prints a warning to stderr
+</span>
+<span class="hspec-success">    - does not leak command-line flags to examples
 </span>
     when interrupted with ctrl-c
 <span class="hspec-success">      - prints summary immediately
@@ -217,8 +246,11 @@ Test.Hspec.Runner
       when given an invalid argument
 <span class="hspec-success">        - prints an error message to stderr
 </span>
-    with --maximum-generated-tests=n
-<span class="hspec-success">      - tries QuickCheck properties n times
+    with --qc-max-success
+<span class="hspec-success">      - tries QuickCheck properties specified number of times
+</span>
+      when run with --rerun
+<span class="hspec-success">        - takes precedence
 </span>
       when given an invalid argument
 <span class="hspec-success">        - prints an error message to stderr
@@ -226,7 +258,7 @@ Test.Hspec.Runner
     with --seed
 <span class="hspec-success">      - uses specified seed
 </span>
-      when run with --re-run
+      when run with --rerun
 <span class="hspec-success">        - takes precedence
 </span>
       when given an invalid argument
@@ -242,27 +274,13 @@ Test.Hspec.Runner
 </span><span class="hspec-success">      - marks pending examples with CSS class hspec-pending
 </span><span class="hspec-success">      - marks failed examples with CSS class hspec-failure
 </span>
-  hspec (experimental features)
-<span class="hspec-success">    - stores a failure report in environment
-</span>
-    with --re-run
-<span class="hspec-success">      - re-runs examples that previously failed
-</span><span class="hspec-success">      - reuses the same seed
-</span>
-      when there is no failure report in the environment
-<span class="hspec-success">        - runs everything
-</span><span class="hspec-success">        - prints a warning to stderr
-</span>
-      when parsing of failure report fails
-<span class="hspec-success">        - runs everything
-</span><span class="hspec-success">        - prints a warning to stderr
-</span>
-  hspecWith
+  hspecResult
 <span class="hspec-success">    - returns a summary of the test run
 </span><span class="hspec-success">    - treats uncaught exceptions as failure
 </span><span class="hspec-success">    - uses the specdoc formatter by default
 </span><span class="hspec-success">    - can use a custom formatter
 </span><span class="hspec-success">    - does not let escape error thunks from failure messages
+</span><span class="hspec-success">    - runs specs in parallel
 </span>
 Test.Hspec.Timer
   timer action returned by newTimer
@@ -311,8 +329,8 @@ Test.Hspec.Util
   stdGenFromInteger
 <span class="hspec-success">    - is inverse to stdGenToInteger
 </span>
-Finished in 0.3909 seconds
-<span class="hspec-pending">144 examples, 0 failures, 2 pending</span>
+Finished in 0.3191 seconds
+<span class="hspec-pending">152 examples, 0 failures, 2 pending</span>
 </pre>
 
     </div>
