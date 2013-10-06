@@ -76,43 +76,11 @@ every spec item with:</p>
       it <span class="sd">&quot;returns 0&quot;</span> <span class="o">$</span> <span class="kr">do</span>
         <span class="n">callApi</span> <span class="s">&quot;GET&quot;</span> <span class="s">&quot;/api/users/count&quot;</span> <span class="p">`</span><span class="n">shouldReturn</span><span class="p">`</span> <span class="mi">0</span>
 </code></pre></div>
+
+
 <h3>Running specs</h3>
 
-<p>The most common way to run a spec is with <a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec-Runner.html#v:hspec"><code>hspec</code></a>, e.g.:</p>
-<div class="highlight"><pre><code class="text">main = hspec spec
-</code></pre></div>
-<p>It is possible to customize how a spec is run by providing command-line flags.
-You can get a list of supported flags by passing <code>--help</code> to your test driver:</p>
-
-<pre>
-<kbd class="shell-input">runhaskell Spec.hs --help</kbd>
-<samp>Usage: Spec.hs [OPTION]...
-
-OPTIONS
-                --help              display this help and exit
-  -m PATTERN    --match=PATTERN     only run examples that match given PATTERN
-                --color             colorize the output
-                --no-color          do not colorize the output
-  -f FORMATTER  --format=FORMATTER  use a custom formatter; this can be one of:
-                                       specdoc
-                                       progress
-                                       failed-examples
-                                       silent
-  -o FILE       --out=FILE          write output to a file instead of STDOUT
-  -a N          --qc-max-success=N  maximum number of successful tests before a
-                                    QuickCheck property succeeds
-                --seed=N            used seed for QuickCheck properties
-                --print-cpu-time    include used CPU time in summary
-                --dry-run           pretend that everything passed; don't verify
-                                    anything
-                --fail-fast         abort on first failure
-  -r            --rerun             rerun all examples that failed in the
-                                    previously test run (only works in GHCi)
-</samp>
-</pre>
-
-<p>Using <a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec-Runner.html#v:hspecWith"><code>hspecWith</code></a> instead of <code>hspec</code> gives even more control over how a
-spec is run.</p>
+See <a href="running-specs.html">Running tests with Hspec</a>
 
     </div>
 
