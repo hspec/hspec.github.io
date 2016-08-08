@@ -110,7 +110,7 @@ readFile
   when specified file does not exist
 <span class="hspec-success">    throws an exception
 </span>
-Finished in 0.0008 seconds
+Finished in 0.0019 seconds
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
 
@@ -151,7 +151,7 @@ used:</p>
 Prelude.head
 <span class="hspec-success">  throws an exception if used with an empty list
 </span>
-Finished in 0.0012 seconds
+Finished in 0.0008 seconds
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
 
@@ -212,12 +212,15 @@ div
 </span>evaluate . force
 <span class="hspec-success">  forces exceptions
 </span>
-1) evaluate forces exceptions
-<span class="hspec-failure">did not get expected exception: ErrorCall
-</span>
-Randomized with seed 2028018059
+Failures:
 
-Finished in 0.0026 seconds
+<span class="hspec-info">  _includes/ExceptionsFromPureCode.hs:13: 
+</span>  1) evaluate forces exceptions
+<span class="hspec-failure">       did not get expected exception: ErrorCall
+</span>
+Randomized with seed 1531239861
+
+Finished in 0.0028 seconds
 <span class="hspec-failure">3 examples, 1 failure</span>
 </samp></pre>
 
@@ -260,7 +263,6 @@ But beware that GHC does not fully adhere to those semantics (see
 
 <div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
-<span class="kr">import</span> <span class="nn">Control.Applicative</span> <span class="p">((</span><span class="o">&lt;$&gt;</span><span class="p">),</span> <span class="p">(</span><span class="o">&lt;*&gt;</span><span class="p">))</span>
 <span class="kr">import</span> <span class="nn">Control.Exception</span> <span class="p">(</span><span class="nf">evaluate</span><span class="p">)</span>
 
 <span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
@@ -276,7 +278,7 @@ But beware that GHC does not fully adhere to those semantics (see
 an exceptional value
 <span class="hspec-success">  contains a set of exceptions (semantically)
 </span>
-Finished in 0.0011 seconds
+Finished in 0.0008 seconds
 <span class="hspec-success">1 example, 0 failures</span>
 </samp></pre>
 

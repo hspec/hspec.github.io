@@ -112,9 +112,10 @@ whatever setup and teardown is necessary.</p>
       <span class="n">c</span> <span class="ow">&lt;-</span> <span class="n">newClient</span> <span class="kt">Nothing</span>
       <span class="n">get</span> <span class="n">c</span> <span class="s">&quot;/api/dogs&quot;</span> <span class="p">`</span><span class="n">shouldReturn</span><span class="p">`</span> <span class="n">status200</span>
 </code></pre></div>
-<p>Hooks do not support passing values to spec items (for example, if you wanted
+<p>Hooks support passing values to spec items (for example, if you wanted
 to open a database connection before each item and pass the connection in).
-However this shouldn&#39;t be a problem; you can just do something like this:</p>
+This can be done with <code>before</code>, <code>around</code> and <code>after</code>. Here&#39;s an example
+for how to use <code>around</code>:</p>
 <div class="highlight"><pre><code class="hspec"><span class="nf">openConnection</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="kt">Connection</span>
 <span class="nf">openConnection</span> <span class="ow">=</span> <span class="o">...</span>
 
@@ -126,11 +127,12 @@ However this shouldn&#39;t be a problem; you can just do something like this:</p
 
 <span class="nf">spec</span> <span class="ow">::</span> <span class="kt">Spec</span>
 <span class="nf">spec</span> <span class="ow">=</span> <span class="kr">do</span>
-  describe <span class="sd">&quot;createRecipe&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-    it <span class="sd">&quot;creates a new recipe&quot;</span> <span class="o">$</span> <span class="n">withDatabaseConnection</span> <span class="o">$</span> <span class="nf">\</span><span class="n">c</span> <span class="ow">-&gt;</span> <span class="kr">do</span>
-      <span class="kr">let</span> <span class="n">ingredients</span> <span class="ow">=</span> <span class="p">[</span><span class="kt">Eggs</span><span class="p">,</span> <span class="kt">Butter</span><span class="p">,</span> <span class="kt">Flour</span><span class="p">,</span> <span class="kt">Sugar</span><span class="p">]</span>
-      <span class="n">createRecipe</span> <span class="n">c</span> <span class="p">(</span><span class="kt">Recipe</span> <span class="s">&quot;Cake&quot;</span> <span class="n">ingredients</span><span class="p">)</span>
-      <span class="n">getRecipe</span> <span class="n">c</span> <span class="s">&quot;Cake&quot;</span> <span class="p">`</span><span class="n">shouldReturn</span><span class="p">`</span> <span class="n">ingredients</span>
+  <span class="n">around</span> <span class="n">withDatabaseConnection</span> <span class="o">$</span> <span class="kr">do</span>
+    describe <span class="sd">&quot;createRecipe&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      it <span class="sd">&quot;creates a new recipe&quot;</span> <span class="o">$</span> <span class="nf">\</span><span class="n">c</span> <span class="ow">-&gt;</span> <span class="kr">do</span>
+        <span class="kr">let</span> <span class="n">ingredients</span> <span class="ow">=</span> <span class="p">[</span><span class="kt">Eggs</span><span class="p">,</span> <span class="kt">Butter</span><span class="p">,</span> <span class="kt">Flour</span><span class="p">,</span> <span class="kt">Sugar</span><span class="p">]</span>
+        <span class="n">createRecipe</span> <span class="n">c</span> <span class="p">(</span><span class="kt">Recipe</span> <span class="s">&quot;Cake&quot;</span> <span class="n">ingredients</span><span class="p">)</span>
+        <span class="n">getRecipe</span> <span class="n">c</span> <span class="s">&quot;Cake&quot;</span> <span class="p">`</span><span class="n">shouldReturn</span><span class="p">`</span> <span class="n">ingredients</span>
 </code></pre></div>
 <h3>Using `pending` and `pendingWith`</h3>
 
