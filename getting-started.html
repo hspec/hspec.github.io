@@ -68,21 +68,30 @@ Failures:
 
 <span class="hspec-info">  _includes/introduction/MathSpec.hs:10: 
 </span>  1) absolute returns the original number when given a positive input
-<span class="hspec-failure">       uncaught exception: ErrorCall (Prelude.undefined)
+<span class="hspec-failure">       uncaught exception: ErrorCall (Prelude.undefined
+       CallStack (from HasCallStack):
+         error, called at libraries/base/GHC/Err.hs:79:14 in base:GHC.Err
+         undefined, called at _includes/introduction/step2/Math.hs:5:12 in main:Math)
 </span>
 <span class="hspec-info">  _includes/introduction/MathSpec.hs:13: 
 </span>  2) absolute returns a positive number when given a negative input
-<span class="hspec-failure">       uncaught exception: ErrorCall (Prelude.undefined)
+<span class="hspec-failure">       uncaught exception: ErrorCall (Prelude.undefined
+       CallStack (from HasCallStack):
+         error, called at libraries/base/GHC/Err.hs:79:14 in base:GHC.Err
+         undefined, called at _includes/introduction/step2/Math.hs:5:12 in main:Math)
 </span>
 <span class="hspec-info">  _includes/introduction/MathSpec.hs:16: 
 </span>  3) absolute returns zero when given zero
-<span class="hspec-failure">       uncaught exception: ErrorCall (Prelude.undefined)
+<span class="hspec-failure">       uncaught exception: ErrorCall (Prelude.undefined
+       CallStack (from HasCallStack):
+         error, called at libraries/base/GHC/Err.hs:79:14 in base:GHC.Err
+         undefined, called at _includes/introduction/step2/Math.hs:5:12 in main:Math)
 </span>
-Randomized with seed 1056294642
+Randomized with seed 1985699137
 
-Finished in 0.0053 seconds
-<span class="hspec-failure">3 examples, 3 failures</span>
-</samp></pre>
+Finished in 0.0055 seconds
+<span class="hspec-failure">3 examples, 3 failures
+</span></samp></pre>
 
 <h3>Step 4: Implement your desired behavior</h3>
 
@@ -103,9 +112,9 @@ absolute
 </span><span class="hspec-success">  returns a positive number when given a negative input
 </span><span class="hspec-success">  returns zero when given zero
 </span>
-Finished in 0.0033 seconds
-<span class="hspec-success">3 examples, 0 failures</span>
-</samp></pre>
+Finished in 0.0007 seconds
+<span class="hspec-success">3 examples, 0 failures
+</span></samp></pre>
 
     </div>
 
