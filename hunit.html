@@ -36,7 +36,7 @@ seamlessly.</p>
   <h5 class="foldable">Example code:</h5>
   <div>
 
-<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
+<figure class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Test.HUnit</span>
 
@@ -44,8 +44,7 @@ seamlessly.</p>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
   describe <span class="sd">&quot;reverse&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     it <span class="sd">&quot;reverses a list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-      <span class="n">reverse</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">@?=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">]</span>
-</code></pre></div>
+      <span class="n">reverse</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">@?=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">]</span></code></pre></figure>
 
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
@@ -71,7 +70,7 @@ freely intermixed.</p>
   <h5 class="foldable">Example code:</h5>
   <div>
 
-<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
+<figure class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec.Contrib.HUnit</span> <span class="p">(</span><span class="nf">fromHUnitTest</span><span class="p">)</span>
 <span class="kr">import</span> <span class="nn">Test.HUnit</span>
@@ -100,8 +99,7 @@ freely intermixed.</p>
 <span class="c1">-- a failing test case</span>
 <span class="nf">test_23_is_equal_to_42</span> <span class="ow">::</span> <span class="kt">Test</span>
 <span class="nf">test_23_is_equal_to_42</span> <span class="ow">=</span> <span class="kt">TestCase</span> <span class="o">$</span> <span class="kr">do</span>
-  <span class="mi">23</span> <span class="o">@?=</span> <span class="p">(</span><span class="mi">42</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
-</code></pre></div>
+  <span class="mi">23</span> <span class="o">@?=</span> <span class="p">(</span><span class="mi">42</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span></code></pre></figure>
 
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>

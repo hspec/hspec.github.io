@@ -39,7 +39,7 @@ distinctive features are:</p>
 
 <pre><kbd class="shell-input">cabal update && cabal install hspec</kbd></pre>
 
-<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
+<figure class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Test.QuickCheck</span>
 <span class="kr">import</span> <span class="nn">Control.Exception</span> <span class="p">(</span><span class="nf">evaluate</span><span class="p">)</span>
@@ -54,8 +54,7 @@ distinctive features are:</p>
       <span class="n">property</span> <span class="o">$</span> <span class="nf">\</span><span class="n">x</span> <span class="n">xs</span> <span class="ow">-&gt;</span> <span class="n">head</span> <span class="p">(</span><span class="n">x</span><span class="kt">:</span><span class="n">xs</span><span class="p">)</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
 
     it <span class="sd">&quot;throws an exception if used with an empty list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-      <span class="n">evaluate</span> <span class="p">(</span><span class="n">head</span> <span class="kt">[]</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyException</span>
-</code></pre></div>
+      <span class="n">evaluate</span> <span class="p">(</span><span class="n">head</span> <span class="kt">[]</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyException</span></code></pre></figure>
 
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>

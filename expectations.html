@@ -31,18 +31,18 @@ the outcome of code examples.</p>
 
 <p>A common expectation is that two values are equal.  <code>shouldBe</code> can be used
 here:</p>
-<div class="highlight"><pre><code class="haskell"><span class="nf">x</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="mi">23</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">x</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="mi">23</span>
 </code></pre></div>
 <p><code>shouldBe</code> can be used in combination with <code>IO</code> actions.  Here is an example:</p>
-<div class="highlight"><pre><code class="haskell"><span class="nf">launchMissiles</span> <span class="o">&gt;&gt;=</span> <span class="p">(`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="kt">Left</span> <span class="s">&quot;permission error&quot;</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">launchMissiles</span> <span class="o">&gt;&gt;=</span> <span class="p">(`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="kt">Left</span> <span class="s">&quot;permission error&quot;</span><span class="p">)</span>
 </code></pre></div>
 <p><code>shouldReturn</code> is a shortcut for that.  The above code can be simplified to:</p>
-<div class="highlight"><pre><code class="haskell"><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldReturn</span><span class="p">`</span> <span class="kt">Left</span> <span class="s">&quot;permission error&quot;</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldReturn</span><span class="p">`</span> <span class="kt">Left</span> <span class="s">&quot;permission error&quot;</span>
 </code></pre></div>
 <h3>Require that a predicate holds</h3>
 
 <p><code>shouldSatisfy</code> requires that some predicate holds for a given value.</p>
-<div class="highlight"><pre><code class="haskell"><span class="nf">xs</span> <span class="p">`</span><span class="n">shouldSatisfy</span><span class="p">`</span> <span class="p">(</span><span class="n">not</span> <span class="o">.</span> <span class="n">null</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">xs</span> <span class="p">`</span><span class="n">shouldSatisfy</span><span class="p">`</span> <span class="p">(</span><span class="n">not</span> <span class="o">.</span> <span class="n">null</span><span class="p">)</span>
 </code></pre></div>
 <p>It is similar to HUnit&#39;s <code>assertBool</code>, but it gives a more detailed error
 message if the expectation fails.</p>
@@ -51,18 +51,18 @@ message if the expectation fails.</p>
 
 <p>Hspec provides a mechanism to state that an action throws an exception.  Here
 is a basic example:</p>
-<div class="highlight"><pre><code class="haskell"><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyException</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyException</span>
 </code></pre></div>
 <h3>Expecting exceptions of a specific type</h3>
 
 <p>The type of <a href="http://hackage.haskell.org/packages/archive/hspec-expectations/latest/doc/html/Test-Hspec-Expectations.html#v:shouldThrow"><code>shouldThrow</code></a> is:</p>
-<div class="highlight"><pre><code class="haskell"><span class="nf">shouldThrow</span> <span class="ow">::</span> <span class="kt">Exception</span> <span class="n">e</span> <span class="ow">=&gt;</span> <span class="kt">IO</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Selector</span> <span class="n">e</span> <span class="ow">-&gt;</span> <span class="kt">Expectation</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">shouldThrow</span> <span class="ow">::</span> <span class="kt">Exception</span> <span class="n">e</span> <span class="ow">=&gt;</span> <span class="kt">IO</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Selector</span> <span class="n">e</span> <span class="ow">-&gt;</span> <span class="kt">Expectation</span>
 </code></pre></div>
 <p>It takes an <code>IO</code> action and a <a href="http://hackage.haskell.org/packages/archive/hspec-expectations/latest/doc/html/Test-Hspec-Expectations.html#t:Selector"><code>Selector</code></a>.  The <code>Selector</code>
 describes the precise nature of the expected exception.</p>
 
 <p>There are several predefined selectors:</p>
-<div class="highlight"><pre><code class="haskell"><span class="nf">anyException</span>      <span class="ow">::</span> <span class="kt">Selector</span> <span class="kt">SomeException</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">anyException</span>      <span class="ow">::</span> <span class="kt">Selector</span> <span class="kt">SomeException</span>
 <span class="nf">anyErrorCall</span>      <span class="ow">::</span> <span class="kt">Selector</span> <span class="kt">ErrorCall</span>
 <span class="nf">anyIOException</span>    <span class="ow">::</span> <span class="kt">Selector</span> <span class="kt">IOException</span>
 <span class="nf">anyArithException</span> <span class="ow">::</span> <span class="kt">Selector</span> <span class="kt">ArithException</span>
@@ -77,7 +77,7 @@ to expect arbitrary exceptions of type <code>ErrorCall</code>, <code>ArithExcept
 <p>A <code>Selector</code> is just a predicate.  It can simultaneously constrain the type and
 value of an exception.  This can be used in various ways, e.g. you can expect a
 specific exception value:</p>
-<div class="highlight"><pre><code class="haskell"><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">==</span> <span class="kt">ExitFailure</span> <span class="mi">1</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">==</span> <span class="kt">ExitFailure</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
 <h4>Expecting specific `IOException`s</h4>
 
@@ -86,13 +86,13 @@ Those can be used in combination with <code>shouldThrow</code> to expect specifi
 <code>IOException</code>s.  Here is an example that uses
 <a href="http://hackage.haskell.org/packages/archive/base/latest/doc/html/System-IO-Error.html#v:isPermissionError"><code>isPermissionError</code></a> to require our hypothetic
 <code>launchMissiles</code> action to fail with a permission error:</p>
-<div class="highlight"><pre><code class="haskell"><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">isPermissionError</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">isPermissionError</span>
 </code></pre></div>
 <div>
   <h5 class="foldable">Example code:</h5>
   <div>
 
-<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
+<figure class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">System.IO.Error</span> <span class="p">(</span><span class="nf">isDoesNotExistError</span><span class="p">)</span>
 
@@ -101,8 +101,7 @@ Those can be used in combination with <code>shouldThrow</code> to expect specifi
   describe <span class="sd">&quot;readFile&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     context <span class="sd">&quot;when specified file does not exist&quot;</span> <span class="o">$</span> <span class="kr">do</span>
       it <span class="sd">&quot;throws an exception&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-        <span class="n">readFile</span> <span class="s">&quot;none-existing-file&quot;</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">isDoesNotExistError</span>
-</code></pre></div>
+        <span class="n">readFile</span> <span class="s">&quot;none-existing-file&quot;</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">isDoesNotExistError</span></code></pre></figure>
 
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
@@ -124,18 +123,18 @@ Finished in 0.0005 seconds
 There is no <code>Eq</code> instance for <code>ErrorCall</code>, hence it is not possible to use <code>==</code>
 to expect a specific exception value of type <code>ErrorCall</code>.  The following won&#39;t
 work:</p>
-<div class="highlight"><pre><code class="haskell"><span class="nf">evaluate</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">==</span> <span class="kt">ErrorCall</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span>  <span class="c1">-- This won&#39;t work!</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">evaluate</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">==</span> <span class="kt">ErrorCall</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span>  <span class="c1">-- This won&#39;t work!</span>
 </code></pre></div>
 <p>Pattern matching can be used instead, but Hspec provides a combinator,
 <a href="http://hackage.haskell.org/packages/archive/hspec-expectations/latest/doc/html/Test-Hspec-Expectations.html#v:errorCall"><code>errorCall</code></a>, to make this more convenient.  Here is how it&#39;s
 used:</p>
-<div class="highlight"><pre><code class="haskell"><span class="nf">evaluate</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="nf">evaluate</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span>
 </code></pre></div>
 <div>
   <h5 class="foldable">Example code:</h5>
   <div>
 
-<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
+<figure class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Control.Exception</span> <span class="p">(</span><span class="nf">evaluate</span><span class="p">)</span>
 
@@ -143,8 +142,7 @@ used:</p>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
   describe <span class="sd">&quot;Prelude.head&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     it <span class="sd">&quot;throws an exception if used with an empty list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-      <span class="n">evaluate</span> <span class="p">(</span><span class="n">head</span> <span class="kt">[]</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;Prelude.head: empty list&quot;</span>
-</code></pre></div>
+      <span class="n">evaluate</span> <span class="p">(</span><span class="n">head</span> <span class="kt">[]</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;Prelude.head: empty list&quot;</span></code></pre></figure>
 
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
@@ -161,11 +159,11 @@ Finished in 0.0005 seconds
 <h3>Expecting exceptions from pure code</h3>
 
 <p><a href="http://hackage.haskell.org/packages/archive/base/latest/doc/html/Control-Exception.html#v:evaluate"><code>evaluate</code></a> can be used to expect exceptions from pure code:</p>
-<div class="highlight"><pre><code class="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="mi">1</span> <span class="p">`</span><span class="n">div</span><span class="p">`</span> <span class="mi">0</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyArithException</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="mi">1</span> <span class="p">`</span><span class="n">div</span><span class="p">`</span> <span class="mi">0</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyArithException</span>
 </code></pre></div>
 <p>However, <code>evaluate</code> only forces its argument to <em>weak head normal form</em>.  To
 better understand what that means, let&#39;s look at an other example:</p>
-<div class="highlight"><pre><code class="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
 </code></pre></div>
 <p>Here <code>evaluate</code> does not force the exception.  It only evaluates its argument
 until it encounters the first constructor.  Here the constructor is <code>:</code>, as soon
@@ -173,7 +171,7 @@ as <code>evaluate</code> sees <code>:</code> it&#39;s done.  It does not look at
 constructor.</p>
 
 <p><a href="http://hackage.haskell.org/packages/archive/deepseq/latest/doc/html/Control-DeepSeq.html#v:force"><code>force</code></a> can be used to force the exception:</p>
-<div class="highlight"><pre><code class="hspec"><span class="p">(</span><span class="n">evaluate</span> <span class="o">.</span> <span class="n">force</span><span class="p">)</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="p">(</span><span class="n">evaluate</span> <span class="o">.</span> <span class="n">force</span><span class="p">)</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
 </code></pre></div>
 <p>Note that <code>return $!!</code> (or any other mechanism that relies solely on <code>seq</code>)
 does not work reliably!  (see the discussion at
@@ -183,7 +181,7 @@ does not work reliably!  (see the discussion at
   <h5 class="foldable">Example code:</h5>
   <div>
 
-<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
+<figure class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Control.Exception</span> <span class="p">(</span><span class="nf">evaluate</span><span class="p">)</span>
 <span class="kr">import</span> <span class="nn">Control.DeepSeq</span>
@@ -200,8 +198,7 @@ does not work reliably!  (see the discussion at
 
   describe <span class="sd">&quot;evaluate . force&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     it <span class="sd">&quot;forces exceptions&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-      <span class="p">(</span><span class="n">evaluate</span> <span class="o">.</span> <span class="n">force</span><span class="p">)</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span>
-</code></pre></div>
+      <span class="p">(</span><span class="n">evaluate</span> <span class="o">.</span> <span class="n">force</span><span class="p">)</span> <span class="p">(</span><span class="n">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span></code></pre></figure>
 
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
@@ -232,7 +229,7 @@ Finished in 0.0005 seconds
 <p>GHC&#39;s semantics for imprecise exceptions can be tricky.  But simple examples
 are evident.  If we look at the <em>exceptional value</em> <code>error &quot;foo&quot; + error &quot;bar&quot;</code> it may
 be tempting to assume that the following expectation holds:</p>
-<div class="highlight"><pre><code class="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span> <span class="o">+</span> <span class="ne">error</span> <span class="s">&quot;bar&quot;</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span> <span class="o">+</span> <span class="ne">error</span> <span class="s">&quot;bar&quot;</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span>
 </code></pre></div>
 <p>There is a pretty good chance that this will indeed hold, but it may equally
 well fail.  The reason is that <code>+</code> does not give any guarantees about the
@@ -246,7 +243,7 @@ non-deterministic way.</p>
 &quot;bar&quot;}</code>, so we have to be prepared to encounter any of those.  We can
 accommodate for this by combining <code>errorCall &quot;foo&quot;</code> and <code>errorCall &quot;bar&quot;</code> with
 <code>||</code>:</p>
-<div class="highlight"><pre><code class="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span> <span class="o">+</span> <span class="ne">error</span> <span class="s">&quot;bar&quot;</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">evaluate</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span> <span class="o">+</span> <span class="ne">error</span> <span class="s">&quot;bar&quot;</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
   <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">||</span><span class="p">)</span> <span class="o">&lt;$&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span> <span class="o">&lt;*&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;bar&quot;</span>
 </code></pre></div>
 <p>The details of imprecise exceptions are described in the paper
@@ -261,7 +258,7 @@ But beware that GHC does not fully adhere to those semantics (see
   <h5 class="foldable">Example code:</h5>
   <div>
 
-<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
+<figure class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Control.Exception</span> <span class="p">(</span><span class="nf">evaluate</span><span class="p">)</span>
 
@@ -270,8 +267,7 @@ But beware that GHC does not fully adhere to those semantics (see
   describe <span class="sd">&quot;an exceptional value&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     it <span class="sd">&quot;contains a set of exceptions (semantically)&quot;</span> <span class="o">$</span> <span class="kr">do</span>
       <span class="n">evaluate</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span> <span class="o">+</span> <span class="ne">error</span> <span class="s">&quot;bar&quot;</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
-        <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">||</span><span class="p">)</span> <span class="o">&lt;$&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span> <span class="o">&lt;*&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;bar&quot;</span>
-</code></pre></div>
+        <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">||</span><span class="p">)</span> <span class="o">&lt;$&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span> <span class="o">&lt;*&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;bar&quot;</span></code></pre></figure>
 
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>

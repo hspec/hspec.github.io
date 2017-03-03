@@ -28,7 +28,7 @@
 type <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#t:Property"><code>Property</code></a>.  QuickCheck&#39;s <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#v:property"><code>property</code></a> function can be used to
 turn anything that is a member of the <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck-Property.html#t:Testable"><code>Testable</code></a> class into a
 <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#t:Property"><code>Property</code></a>.  Here is an example:</p>
-<div class="highlight"><pre><code class="hspec">describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec">describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
   it <span class="sd">&quot;is inverse to show&quot;</span> <span class="o">$</span> <span class="n">property</span> <span class="o">$</span>
     <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
 </code></pre></div>
@@ -36,7 +36,7 @@ turn anything that is a member of the <a href="http://hackage.haskell.org/packag
   <h5 class="foldable">Example code:</h5>
   <div>
 
-<div class="highlight"><pre><code class="hspec"><span class="c1">-- file Spec.hs</span>
+<figure class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
 <span class="kr">import</span> <span class="nn">Test.QuickCheck</span>
 
@@ -45,8 +45,7 @@ turn anything that is a member of the <a href="http://hackage.haskell.org/packag
   describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     context <span class="sd">&quot;when used with ints&quot;</span> <span class="o">$</span> <span class="kr">do</span>
       it <span class="sd">&quot;is inverse to show&quot;</span> <span class="o">$</span> <span class="n">property</span> <span class="o">$</span>
-        <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
-</code></pre></div>
+        <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span></code></pre></figure>
 
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
