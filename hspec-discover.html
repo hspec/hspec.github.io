@@ -27,7 +27,7 @@
 <p>It is a useful convention to have one spec file for each source file.  That way
 it is straightforward to find the corresponding spec for a given piece of code.
 So let&#39;s assume we have a project with the following directory layout:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text">src/
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>src/
 ├── Foo.hs
 ├── Foo/
 │   └── Bar.hs
@@ -44,7 +44,7 @@ test/
 
 <p>Now if we want to run all specs in one go we have to write the following
 boilerplate:</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="kr">import</span> <span class="nn">Test.Hspec</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="kr">import</span> <span class="nn">Test.Hspec</span>
 
 <span class="kr">import</span> <span class="k">qualified</span> <span class="nn">FooSpec</span>
 <span class="kr">import</span> <span class="k">qualified</span> <span class="nn">Foo.BarSpec</span>
@@ -63,7 +63,7 @@ boilerplate:</p>
 automated.  Hspec provides a solution for that.  We make creative use of GHC&#39;s
 support for custom preprocessors.  The developer only has to create a
 <em>test driver</em> that contains a single line:</p>
-<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="c1">-- file test/Spec.hs</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span></span><span class="c1">-- file test/Spec.hs</span>
 <span class="cm">{-# OPTIONS_GHC -F -pgmF hspec-discover #-}</span>
 </code></pre></div>
 <p>This instructs GHC to invoke <code>hspec-discover</code> as a preprocessor on
@@ -93,9 +93,9 @@ from <code>Main</code>.  That way you can import it from your own <code>Main</co
 
 <p>Here is an example that shows how this can be utilized to specify a different
 default formatter:</p>
-<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="c1">-- file test/Spec.hs</span>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span></span><span class="c1">-- file test/Spec.hs</span>
 <span class="cm">{-# OPTIONS_GHC -F -pgmF hspec-discover -optF --module-name=Spec #-}</span>
-</code></pre></div><div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span class="c1">-- file test/Main.hs</span>
+</code></pre></div><div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span></span><span class="c1">-- file test/Main.hs</span>
 <span class="kr">module</span> <span class="nn">Main</span> <span class="kr">where</span>
 
 <span class="kr">import</span> <span class="nn">Test.Hspec.Runner</span>

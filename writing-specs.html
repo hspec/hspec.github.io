@@ -29,7 +29,7 @@
 <p>Hspec provides an EDSL to describe tests.</p>
 
 <p><code>describe</code> and <code>it</code> are used to organize tests with Hspec.</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
   describe <span class="sd">&quot;Prelude.read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     it <span class="sd">&quot;can parse integers&quot;</span> <span class="o">$</span> <span class="kr">do</span>
@@ -39,7 +39,7 @@
       <span class="n">read</span> <span class="s">&quot;2.5&quot;</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="p">(</span><span class="mf">2.5</span> <span class="ow">::</span> <span class="kt">Float</span><span class="p">)</span>
 </code></pre></div>
 <p>A spec can consist of multiple <code>describe</code>s, and <code>describe</code>s can be nested.</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
   describe <span class="sd">&quot;Prelude&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
@@ -54,7 +54,7 @@
 
 <p><code>context</code> is just an alias for <code>describe</code>.  Use <code>context</code> with <em>when</em> or
 <em>with</em>, e.g.:</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
   describe <span class="sd">&quot;parse&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     context <span class="sd">&quot;when provided with invalid input&quot;</span> <span class="o">$</span> <span class="kr">do</span>
@@ -66,7 +66,7 @@
 <p><code>before_</code> runs a custom <code>IO</code> action before every spec item. For example, if you
 have an action <code>flushDb</code> which flushes your database, you can run it before
 every spec item with:</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="n">before_</span> <span class="n">flushDb</span> <span class="o">$</span> <span class="kr">do</span>
   describe <span class="sd">&quot;/api/users/count&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     it <span class="sd">&quot;returns the number of users&quot;</span> <span class="o">$</span> <span class="kr">do</span>
@@ -78,7 +78,7 @@ every spec item with:</p>
         <span class="n">get</span> <span class="s">&quot;/api/users/count&quot;</span> <span class="p">`</span><span class="n">shouldReturn</span><span class="p">`</span> <span class="mi">0</span>
 </code></pre></div>
 <p>Similarly, <code>after_</code> runs a custom <code>IO</code> action after every spec item:</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="n">after_</span> <span class="n">truncateDatabase</span> <span class="o">$</span> <span class="kr">do</span>
   describe <span class="sd">&quot;createUser&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     it <span class="sd">&quot;creates a new user&quot;</span> <span class="o">$</span> <span class="kr">do</span>
@@ -92,7 +92,7 @@ every spec item with:</p>
 </code></pre></div>
 <p><code>around_</code> is passed an <code>IO</code> action for each spec item so that it can perform
 whatever setup and teardown is necessary.</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">serveStubbedApi</span> <span class="ow">::</span> <span class="kt">String</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="kt">Server</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="nf">serveStubbedApi</span> <span class="ow">::</span> <span class="kt">String</span> <span class="ow">-&gt;</span> <span class="kt">Int</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="kt">Server</span>
 <span class="nf">stopServer</span> <span class="ow">::</span> <span class="kt">Server</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
 
 <span class="nf">withStubbedApi</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
@@ -116,7 +116,7 @@ whatever setup and teardown is necessary.</p>
 to open a database connection before each item and pass the connection in).
 This can be done with <code>before</code>, <code>around</code> and <code>after</code>. Here&#39;s an example
 for how to use <code>around</code>:</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">openConnection</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="kt">Connection</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="nf">openConnection</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="kt">Connection</span>
 <span class="nf">openConnection</span> <span class="ow">=</span> <span class="o">...</span>
 
 <span class="nf">closeConnection</span> <span class="ow">::</span> <span class="kt">Connection</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="nb">()</span>
@@ -140,7 +140,7 @@ for how to use <code>around</code>:</p>
 writing your specs.  If you think of some behaviour that your code should
 satisfy, but you are working on something else, you can add a spec item and
 just set it to pending.</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
   describe <span class="sd">&quot;/login&quot;</span> <span class="o">$</span> <span class="kr">do</span>
     it <span class="sd">&quot;should use correct status codes&quot;</span> <span class="o">$</span> <span class="kr">do</span>
