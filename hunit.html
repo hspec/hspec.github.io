@@ -2,12 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- TODO: Restrict font variants to what we are actually using! -->
     <!-- link href='http://fonts.googleapis.com/css?family=Arimo:700italic,700,400italic,400|Cousine:700italic,700,400italic,400' rel='stylesheet' type='text/css'-->
 
     <link rel="stylesheet" type="text/css" href="css/custom.css">
-    <title>Hspec: A Testing Framework for Haskell</title>
+    
+    <title>Interoperability with HUnit - Hspec: A Testing Framework for Haskell</title>
+    
   </head>
   <body>
     <a class="header" href="index.html">
@@ -22,9 +25,10 @@
         you'll get some non-essential but convenient user interface
         enhancements.</em>
       </noscript>
-      <h2>Interoperability with HUnit</h2>
-
-<h3>Using HUnit assertions</h3>
+      
+      <h1>Interoperability with HUnit</h1>
+      
+      <h2 id="using-hunit-assertions">Using HUnit assertions</h2>
 
 <p>Hspec&#39;s <a href="expectations.html">expectation language</a> is built on top of
 <a href="http://hackage.haskell.org/package/HUnit">HUnit</a>, hence it is possible to use
@@ -58,7 +62,7 @@ Finished in 0.0005 seconds
   </div>
 </div>
 
-<h3>Running a HUnit test suite with Hspec</h3>
+<h2 id="running-a-hunit-test-suite-with-hspec">Running a HUnit test suite with Hspec</h2>
 
 <p><a href="http://hackage.haskell.org/packages/archive/hspec-contrib/latest/doc/html/Test-Hspec-Contrib-HUnit.html#v:fromHUnitTest"><code>fromHUnitTest</code></a> from the
 <a href="http://hackage.haskell.org/package/hspec-contrib"><code>hspec-contrib</code></a> package can

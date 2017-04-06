@@ -2,12 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- TODO: Restrict font variants to what we are actually using! -->
     <!-- link href='http://fonts.googleapis.com/css?family=Arimo:700italic,700,400italic,400|Cousine:700italic,700,400italic,400' rel='stylesheet' type='text/css'-->
 
     <link rel="stylesheet" type="text/css" href="css/custom.css">
-    <title>Hspec: A Testing Framework for Haskell</title>
+    
+    <title>Setting expectations - Hspec: A Testing Framework for Haskell</title>
+    
   </head>
   <body>
     <a class="header" href="index.html">
@@ -22,12 +25,25 @@
         you'll get some non-essential but convenient user interface
         enhancements.</em>
       </noscript>
-      <h2>Setting expectations</h2>
-
-<p>Hspec provides several combinators that can be used to set expectations about
+      
+      <h1>Setting expectations</h1>
+      
+      <p>Hspec provides several combinators that can be used to set expectations about
 the outcome of code examples.</p>
 
-<h3>Expecting equality</h3>
+<p><h3>Contents:</h3><ul>
+<li>
+<a href="#expecting-equality">Expecting equality</a>
+</li>
+<li>
+<a href="#require-that-a-predicate-holds">Require that a predicate holds</a>
+</li>
+<li>
+<a href="#expecting-exceptions">Expecting exceptions</a>
+</li>
+</ul></p>
+
+<h2 id="expecting-equality">Expecting equality</h2>
 
 <p>A common expectation is that two values are equal.  <code>shouldBe</code> can be used
 here:</p>
@@ -39,7 +55,7 @@ here:</p>
 <p><code>shouldReturn</code> is a shortcut for that.  The above code can be simplified to:</p>
 <div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span></span><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldReturn</span><span class="p">`</span> <span class="kt">Left</span> <span class="s">&quot;permission error&quot;</span>
 </code></pre></div>
-<h3>Require that a predicate holds</h3>
+<h2 id="require-that-a-predicate-holds">Require that a predicate holds</h2>
 
 <p><code>shouldSatisfy</code> requires that some predicate holds for a given value.</p>
 <div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span></span><span class="nf">xs</span> <span class="p">`</span><span class="n">shouldSatisfy</span><span class="p">`</span> <span class="p">(</span><span class="n">not</span> <span class="o">.</span> <span class="n">null</span><span class="p">)</span>
@@ -47,13 +63,13 @@ here:</p>
 <p>It is similar to HUnit&#39;s <code>assertBool</code>, but it gives a more detailed error
 message if the expectation fails.</p>
 
-<h2>Expecting exceptions</h2>
+<h2 id="expecting-exceptions">Expecting exceptions</h2>
 
 <p>Hspec provides a mechanism to state that an action throws an exception.  Here
 is a basic example:</p>
 <div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span></span><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyException</span>
 </code></pre></div>
-<h3>Expecting exceptions of a specific type</h3>
+<h3 id="expecting-exceptions-of-a-specific-type">Expecting exceptions of a specific type</h3>
 
 <p>The type of <a href="http://hackage.haskell.org/packages/archive/hspec-expectations/latest/doc/html/Test-Hspec-Expectations.html#v:shouldThrow"><code>shouldThrow</code></a> is:</p>
 <div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span></span><span class="nf">shouldThrow</span> <span class="ow">::</span> <span class="kt">Exception</span> <span class="n">e</span> <span class="ow">=&gt;</span> <span class="kt">IO</span> <span class="n">a</span> <span class="ow">-&gt;</span> <span class="kt">Selector</span> <span class="n">e</span> <span class="ow">-&gt;</span> <span class="kt">Expectation</span>
@@ -72,14 +88,14 @@ Likewise <code>anyErrorCall</code>, <code>anyArithException</code> and <code>any
 to expect arbitrary exceptions of type <code>ErrorCall</code>, <code>ArithException</code> and
 <code>IOException</code> respectively.</p>
 
-<h3>Using predicates as selectors</h3>
+<h3 id="using-predicates-as-selectors">Using predicates as selectors</h3>
 
 <p>A <code>Selector</code> is just a predicate.  It can simultaneously constrain the type and
 value of an exception.  This can be used in various ways, e.g. you can expect a
 specific exception value:</p>
 <div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span></span><span class="nf">launchMissiles</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">==</span> <span class="kt">ExitFailure</span> <span class="mi">1</span><span class="p">)</span>
 </code></pre></div>
-<h4>Expecting specific `IOException`s</h4>
+<h4 id="expecting-specific-ioexception-s">Expecting specific `IOException`s</h4>
 
 <p>The module <code>System.IO.Error</code> exports predicates to classify <code>IOException</code>s.
 Those can be used in combination with <code>shouldThrow</code> to expect specific
@@ -116,7 +132,7 @@ Finished in 0.0005 seconds
   </div>
 </div>
 
-<h4>Dealing with `error` and `undefined`</h4>
+<h4 id="dealing-with-error-and-undefined">Dealing with `error` and `undefined`</h4>
 
 <p>Both <code>error</code> and <code>undefined</code> throw exceptions of type
 <a href="http://hackage.haskell.org/packages/archive/base/latest/doc/html/Control-Exception.html#t:ErrorCall"><code>ErrorCall</code></a>.
@@ -156,7 +172,7 @@ Finished in 0.0005 seconds
   </div>
 </div>
 
-<h3>Expecting exceptions from pure code</h3>
+<h3 id="expecting-exceptions-from-pure-code">Expecting exceptions from pure code</h3>
 
 <p><a href="http://hackage.haskell.org/packages/archive/base/latest/doc/html/Control-Exception.html#v:evaluate"><code>evaluate</code></a> can be used to expect exceptions from pure code:</p>
 <div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="nf">evaluate</span> <span class="p">(</span><span class="mi">1</span> <span class="p">`</span><span class="n">div</span><span class="p">`</span> <span class="mi">0</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyArithException</span>
@@ -224,7 +240,7 @@ Finished in 0.0005 seconds
   </div>
 </div>
 
-<h4>Beware of GHC&#39;s <em>semantics for imprecise exceptions</em></h4>
+<h4 id="beware-of-ghcs-semantics-for-imprecise-exceptions">Beware of GHC&#39;s <em>semantics for imprecise exceptions</em></h4>
 
 <p>GHC&#39;s semantics for imprecise exceptions can be tricky.  But simple examples
 are evident.  If we look at the <em>exceptional value</em> <code>error &quot;foo&quot; + error &quot;bar&quot;</code> it may

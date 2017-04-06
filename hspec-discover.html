@@ -2,12 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- TODO: Restrict font variants to what we are actually using! -->
     <!-- link href='http://fonts.googleapis.com/css?family=Arimo:700italic,700,400italic,400|Cousine:700italic,700,400italic,400' rel='stylesheet' type='text/css'-->
 
     <link rel="stylesheet" type="text/css" href="css/custom.css">
-    <title>Hspec: A Testing Framework for Haskell</title>
+    
+    <title>Automatic spec discovery - Hspec: A Testing Framework for Haskell</title>
+    
   </head>
   <body>
     <a class="header" href="index.html">
@@ -22,7 +25,10 @@
         you'll get some non-essential but convenient user interface
         enhancements.</em>
       </noscript>
-      <h2>Automatic spec discovery</h2>
+      
+      <h1>Automatic spec discovery</h1>
+      
+      <h2 id="generating-a-test-driver">Generating a test driver</h2>
 
 <p>It is a useful convention to have one spec file for each source file.  That way
 it is straightforward to find the corresponding spec for a given piece of code.
@@ -83,7 +89,7 @@ match the file name.</li>
 
 <p>A complete example is at <a href="https://github.com/hspec/hspec-example">https://github.com/hspec/hspec-example</a>.</p>
 
-<h2>Using a custom main function</h2>
+<h2 id="using-a-custom-main-function">Using a custom main function</h2>
 
 <p><code>hspec-discover</code> gives you a default <code>main</code> function and in many cases this is
 exactly what you want.  However, sometimes it is useful to customize the used

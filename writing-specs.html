@@ -2,12 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- TODO: Restrict font variants to what we are actually using! -->
     <!-- link href='http://fonts.googleapis.com/css?family=Arimo:700italic,700,400italic,400|Cousine:700italic,700,400italic,400' rel='stylesheet' type='text/css'-->
 
     <link rel="stylesheet" type="text/css" href="css/custom.css">
-    <title>Hspec: A Testing Framework for Haskell</title>
+    
+    <title>Writing tests with Hspec - Hspec: A Testing Framework for Haskell</title>
+    
   </head>
   <body>
     <a class="header" href="index.html">
@@ -22,9 +25,10 @@
         you'll get some non-essential but convenient user interface
         enhancements.</em>
       </noscript>
-      <h2>Writing Tests with Hspec</h2>
-
-<h3>Using `describe` and `it`</h3>
+      
+      <h1>Writing tests with Hspec</h1>
+      
+      <h2 id="using-describe-and-it">Using `describe` and `it`</h2>
 
 <p>Hspec provides an EDSL to describe tests.</p>
 
@@ -50,7 +54,7 @@
       it <span class="sd">&quot;returns the first element of a list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
         <span class="n">head</span> <span class="p">[</span><span class="mi">23</span> <span class="o">..</span><span class="p">]</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="mi">23</span>
 </code></pre></div>
-<h3>Using `context`</h3>
+<h2 id="using-context">Using `context`</h2>
 
 <p><code>context</code> is just an alias for <code>describe</code>.  Use <code>context</code> with <em>when</em> or
 <em>with</em>, e.g.:</p>
@@ -61,7 +65,7 @@
       it <span class="sd">&quot;returns a parse error&quot;</span> <span class="o">$</span> <span class="kr">do</span>
         <span class="n">parse</span> <span class="s">&quot;some invalid input&quot;</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="kt">Left</span> <span class="s">&quot;parse error&quot;</span>
 </code></pre></div>
-<h3>Using hooks</h3>
+<h2 id="using-hooks">Using hooks</h2>
 
 <p><code>before_</code> runs a custom <code>IO</code> action before every spec item. For example, if you
 have an action <code>flushDb</code> which flushes your database, you can run it before
@@ -134,7 +138,7 @@ for how to use <code>around</code>:</p>
         <span class="n">createRecipe</span> <span class="n">c</span> <span class="p">(</span><span class="kt">Recipe</span> <span class="s">&quot;Cake&quot;</span> <span class="n">ingredients</span><span class="p">)</span>
         <span class="n">getRecipe</span> <span class="n">c</span> <span class="s">&quot;Cake&quot;</span> <span class="p">`</span><span class="n">shouldReturn</span><span class="p">`</span> <span class="n">ingredients</span>
 </code></pre></div>
-<h3>Using `pending` and `pendingWith`</h3>
+<h2 id="using-pending-and-pendingwith">Using `pending` and `pendingWith`</h2>
 
 <p><code>pending</code>/<code>pendingWith</code> can be used as a kind of TODO list while you are
 writing your specs.  If you think of some behaviour that your code should

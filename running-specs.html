@@ -2,12 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- TODO: Restrict font variants to what we are actually using! -->
     <!-- link href='http://fonts.googleapis.com/css?family=Arimo:700italic,700,400italic,400|Cousine:700italic,700,400italic,400' rel='stylesheet' type='text/css'-->
 
     <link rel="stylesheet" type="text/css" href="css/custom.css">
-    <title>Hspec: A Testing Framework for Haskell</title>
+    
+    <title>Running tests with Hspec - Hspec: A Testing Framework for Haskell</title>
+    
   </head>
   <body>
     <a class="header" href="index.html">
@@ -22,66 +25,25 @@
         you'll get some non-essential but convenient user interface
         enhancements.</em>
       </noscript>
-      <h2>Running Tests with Hspec</h2>
+      
+      <h1>Running tests with Hspec</h1>
+      
+      <p>To run Hspec tests we have to define an executable, the <em>test driver</em>.
+By convention, in the context of a <em>Haskell package</em>, we define the test driver
+in <code>test/Spec.hs</code>.
+As we
+have already seen in previous sections of this manual, the <a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec.html#v:hspec"><code>hspec</code></a>
+function can be used to do this.  In general a <code>spec</code> of type <code>Spec</code> can be
+turned into an executable with:</p>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="c1">-- file test/Spec.hs</span>
+<span class="kr">module</span> <span class="nn">Main</span> <span class="kr">where</span>
 
-<p>The most common way to run a spec is with <a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec.html#v:hspec"><code>hspec</code></a>, e.g.:</p>
-<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>main = hspec spec
+<span class="kr">import</span> <span class="nn">Tests.Hspec</span>
+
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="n">spec</span>
 </code></pre></div>
-<p>It is possible to customize how a spec is run by providing command-line options.
-You can get a list of supported options by passing <code>--help</code> to your test driver:</p>
-
-<pre>
-<kbd class="shell-input">runhaskell Spec.hs --help</kbd>
-<samp>Usage: Spec.hs [OPTION]...
-
-OPTIONS
-                --help                  display this help and exit
-                --ignore-dot-hspec      do not read options from ~/.hspec and
-                                        .hspec
-  -m PATTERN    --match=PATTERN         only run examples that match given
-                                        PATTERN
-                --skip=PATTERN          skip examples that match given PATTERN
-                --color                 colorize the output
-                --no-color              do not colorize the output
-                --diff                  show colorized diffs
-                --no-diff               do not show colorized diffs
-  -f FORMATTER  --format=FORMATTER      use a custom formatter; this can be one
-                                        of:
-                                           specdoc
-                                           progress
-                                           failed-examples
-                                           silent
-  -o FILE       --out=FILE              write output to a file instead of STDOUT
-                --depth=N               maximum depth of generated test values
-                                        for SmallCheck properties
-  -a N          --qc-max-success=N      maximum number of successful tests
-                                        before a QuickCheck property succeeds
-                --qc-max-size=N         size to use for the biggest test cases
-                --qc-max-discard=N      maximum number of discarded tests per
-                                        successful test before giving up
-                --seed=N                used seed for QuickCheck properties
-                --print-cpu-time        include used CPU time in summary
-                --dry-run               pretend that everything passed; don't
-                                        verify anything
-                --fail-fast             abort on first failure
-  -r            --rerun                 rerun all examples that failed in the
-                                        previous test run (only works in
-                                        combination with --failure-report or in
-                                        GHCi)
-                --failure-report=FILE   read/write a failure report for use with
-                                        --rerun
-                --rerun-all-on-success  run the whole test suite after a
-                                        previously failing rerun succeeds for
-                                        the first time (only works in
-                                        combination with --rerun)
-  -j N          --jobs=N                run at most N parallelizable tests
-                                        simultaneously (default: number of
-                                        available processors)
-</samp>
-</pre>
-
-<p>Using <a href="http://hackage.haskell.org/packages/archive/hspec-core/latest/doc/html/Test-Hspec-Core-Runner.html#v:hspecWith"><code>hspecWith</code></a> instead of <code>hspec</code> gives even more control over how a
-spec is run.</p>
+<p><strong><em>Note:</em></strong> For a real-world project <a href="hspec-discover.html">the test driver can be generated with hspec-discover</a>.</p>
 
     </div>
 
