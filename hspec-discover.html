@@ -19,16 +19,107 @@
       </div>
     </a>
 
-    <div class="container">
-      <noscript>
-        <em>Tip: JavaScript is disabled in your browser.  If you enable JavaScript
-        you'll get some non-essential but convenient user interface
-        enhancements.</em>
-      </noscript>
-      
-      <h1>Automatic spec discovery</h1>
-      
-      <h2 id="generating-a-test-driver">Generating a test driver</h2>
+    <div class="container flex-container">
+      <div class="flex-item toc">
+        <h1>Contents</h1>
+        <ul>
+        
+          
+          
+          <li>
+          
+            <a href="/getting-started.html">Five-step introduction</a>
+          
+          </li>
+        
+          
+          
+          <li>
+          
+            <a href="/writing-specs.html">Writing tests with Hspec</a>
+          
+          </li>
+        
+          
+          
+          <li>
+          
+            <a href="/running-specs.html">Running tests with Hspec</a>
+          
+          </li>
+        
+          
+          
+          <li>
+          
+            <a href="/options.html">Passing options to Hspec</a>
+          
+          </li>
+        
+          
+          
+          <li>
+          
+            <a href="/expectations.html">Setting expectations</a>
+          
+          </li>
+        
+          
+          
+          <li>
+          
+            <a href="/quickcheck.html">Using QuickCheck with Hspec</a>
+          
+          </li>
+        
+          
+          
+          <li>
+          
+            <a href="/hunit.html">Interoperability with HUnit</a>
+          
+          </li>
+        
+          
+          
+          <li>
+          
+            Automatic spec discovery
+            <ul>
+<li>
+<a href="#generating-a-test-driver">Generating a test driver</a>
+</li>
+<li>
+<a href="#using-a-custom-main-function">Using a custom main function</a>
+</li>
+</ul>
+
+          
+          </li>
+        
+          
+          
+          <li>
+          
+            <a href="/parallel-spec-execution.html">Parallel spec execution</a>
+          
+          </li>
+        
+        </ul>
+      </div>
+
+      <div class="flex-item content">
+        <noscript>
+          <em>Tip: JavaScript is disabled in your browser.  If you enable JavaScript
+          you'll get some non-essential but convenient user interface
+          enhancements.</em>
+        </noscript>
+
+        
+        <h1>Automatic spec discovery</h1>
+        
+
+        <h2 id="generating-a-test-driver">Generating a test driver</h2>
 
 <p>It is a useful convention to have one spec file for each source file.  That way
 it is straightforward to find the corresponding spec for a given piece of code.
@@ -111,6 +202,7 @@ default formatter:</p>
 <span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspecWith</span> <span class="n">defaultConfig</span> <span class="p">{</span><span class="n">configFormatter</span> <span class="ow">=</span> <span class="kt">Just</span> <span class="n">progress</span><span class="p">}</span> <span class="kt">Spec</span><span class="o">.</span><span class="n">spec</span>
 </code></pre></div>
+      </div>
     </div>
 
     <div class="footer">
