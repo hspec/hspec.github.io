@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/custom.css">
     
-    <title>Parallel spec execution - Hspec: A Testing Framework for Haskell</title>
+    <title>Speeding up the edit-compile-test cycle - Hspec: A Testing Framework for Haskell</title>
     
   </head>
   <body>
@@ -92,7 +92,13 @@
           
           <li>
           
-            <a href="/rerun.html">Speeding up the edit-compile-test cycle</a>
+            Speeding up the edit-compile-test cycle
+            <ul>
+<li>
+<a href="#rerunning-failed-tests-only">Rerunning failed tests only</a>
+</li>
+</ul>
+
           
           </li>
         
@@ -100,8 +106,7 @@
           
           <li>
           
-            Parallel spec execution
-            
+            <a href="/parallel-spec-execution.html">Parallel spec execution</a>
           
           </li>
         
@@ -116,48 +121,38 @@
         </noscript>
 
         
-        <h1>Parallel spec execution</h1>
+        <h1>Speeding up the edit-compile-test cycle</h1>
         
 
-        <p>You can use <code>parallel</code> to mark specs for parallel execution.  This is useful if
-you want to speed up your tests by utilizing multiple CPUs.</p>
+        <div class="note"><p><strong>Note:</strong> This section assumes that you are using <code>hspec-2.4.2</code> or later.</p>
+</div>
 
-<p>Here is an example:</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="c1">-- file Spec.hs</span>
-<span class="kr">import</span> <span class="nn">Test.Hspec</span>
-<span class="kr">import</span> <span class="nn">Test.QuickCheck</span>
-<span class="kr">import</span> <span class="nn">Control.Monad</span>
+<h2 id="rerunning-failed-tests-only">Rerunning failed tests only</h2>
 
-<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
-<span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="n">spec</span>
+<p>When running tests, it is possible to only run tests that have failed in a
+previous test run.
+This can help to:</p>
 
-<span class="nf">spec</span> <span class="ow">::</span> <span class="kt">Spec</span>
-<span class="nf">spec</span> <span class="ow">=</span> <span class="n">parallel</span> <span class="o">$</span> <span class="kr">do</span>
-  describe <span class="sd">&quot;expensiveOperation&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-    <span class="n">replicateM_</span> <span class="mi">4</span> <span class="o">$</span> <span class="kr">do</span>
-      it <span class="sd">&quot;is expensive&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-        <span class="n">property</span> <span class="n">expensiveOperation</span>
+<ul>
+<li>speed up the edit-compile-test cycle</li>
+<li>focus on a fixed subset of failing tests</li>
+</ul>
 
-<span class="nf">expensiveOperation</span> <span class="ow">::</span> <span class="p">[[</span><span class="kt">String</span><span class="p">]]</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
-<span class="nf">expensiveOperation</span> <span class="n">xs</span> <span class="ow">=</span> <span class="p">(</span><span class="n">concat</span> <span class="o">.</span> <span class="n">concat</span><span class="p">)</span> <span class="n">xs</span> <span class="o">==</span> <span class="p">(</span><span class="n">concat</span> <span class="o">.</span> <span class="n">concat</span><span class="p">)</span> <span class="n">xs</span>
-</code></pre></div>
-<p>Link the program with <code>-threaded</code> and pass <code>+RTS -N -RTS</code> when running it:</p>
+<p>Two options are required for this.</p>
 
-<pre>
-<kbd class="shell-input">ghc -threaded Spec.hs</kbd>
-</pre>
+<p>Instruct Hspec to write/read failure reports to/from a file:</p>
 
-<pre>
-<kbd class="shell-input">./Spec +RTS -N -RTS</kbd>
-</pre>
+<pre><kbd class="shell-input">echo --failure-report .hspec-failures >> ~/.hspec</kbd></pre>
 
-<p>All specs that are not explicitly marked with <code>parallel</code> are run in the
-application&#39;s main thread.</p>
+<p>Enable <code>--rerun</code>:</p>
 
-<p>By default, the number of threads available for parallel execution is equal to
-the number of processors available to the process, as determined by
-<code>+RTS -N</code>.  A different number (higher or lower) can be specified using the
-<code>-j</code> option.  Note that this number is in addition to the main thread.</p>
+<pre><kbd class="shell-input">echo --rerun >> ~/.hspec</kbd></pre>
+
+<p>In addition <code>--rerun-all-on-success</code> is useful in this scenario:</p>
+
+<pre><kbd class="shell-input">echo --rerun-all-on-success >> ~/.hspec</kbd></pre>
+
+<p>You may want to have a look at the <a href="/options.html">section on options</a> for more details.</p>
 
       </div>
     </div>
