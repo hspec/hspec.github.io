@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" type="text/css" href="css/custom.css">
     
-    <title>Parallel spec execution - Hspec: A Testing Framework for Haskell</title>
+    <title>Running individual spec items - Hspec: A Testing Framework for Haskell</title>
     
   </head>
   <body>
@@ -92,7 +92,8 @@
           
           <li>
           
-            <a href="/match.html">Running individual spec items</a>
+            Running individual spec items
+            
           
           </li>
         
@@ -108,8 +109,7 @@
           
           <li>
           
-            Parallel spec execution
-            
+            <a href="/parallel-spec-execution.html">Parallel spec execution</a>
           
           </li>
         
@@ -124,48 +124,74 @@
         </noscript>
 
         
-        <h1>Parallel spec execution</h1>
+        <h1>Running individual spec items</h1>
         
 
-        <p>You can use <code>parallel</code> to mark specs for parallel execution.  This is useful if
-you want to speed up your tests by utilizing multiple CPUs.</p>
+        <p>You can run individual spec items that match a given pattern by passing
+<code>--match PATTERN</code> to your test driver.  The <code>PATTERN</code> is matched against</p>
 
-<p>Here is an example:</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="c1">-- file Spec.hs</span>
-<span class="kr">import</span> <span class="nn">Test.Hspec</span>
-<span class="kr">import</span> <span class="nn">Test.QuickCheck</span>
-<span class="kr">import</span> <span class="nn">Control.Monad</span>
+<ul>
+<li>the <em><code>/</code>-separated path</em> of the spec item</li>
+<li>the <em>pretty-printed path</em> of the spec item as it appears in test output</li>
+</ul>
+
+<p>To understand what exactly this means let&#39;s look at an example.</p>
+
+<h3 id="example">Example</h3>
+
+<figure class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="c1">-- Spec.hs</span>
+<span class="kr">import</span>           <span class="nn">Test.Hspec</span>
 
 <span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
-<span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="n">spec</span>
+<span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
+  describe <span class="sd">&quot;Prelude&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    describe <span class="sd">&quot;reverse&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      it <span class="sd">&quot;reverses a list&quot;</span> <span class="kt">False</span>
+    describe <span class="sd">&quot;show&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      it <span class="sd">&quot;shows its argument&quot;</span> <span class="kt">True</span></code></pre></figure>
 
-<span class="nf">spec</span> <span class="ow">::</span> <span class="kt">Spec</span>
-<span class="nf">spec</span> <span class="ow">=</span> <span class="n">parallel</span> <span class="o">$</span> <span class="kr">do</span>
-  describe <span class="sd">&quot;expensiveOperation&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-    <span class="n">replicateM_</span> <span class="mi">4</span> <span class="o">$</span> <span class="kr">do</span>
-      it <span class="sd">&quot;is expensive&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-        <span class="n">property</span> <span class="n">expensiveOperation</span>
+<pre>
+<kbd class="shell-input">runhaskell Spec.hs</kbd>
+<samp>
+Prelude
+  reverse
+<span class="hspec-failure">    reverses a list FAILED [1]
+</span>  show
+<span class="hspec-success">    shows its argument
+</span>
+Failures:
 
-<span class="nf">expensiveOperation</span> <span class="ow">::</span> <span class="p">[[</span><span class="kt">String</span><span class="p">]]</span> <span class="ow">-&gt;</span> <span class="kt">Bool</span>
-<span class="nf">expensiveOperation</span> <span class="n">xs</span> <span class="ow">=</span> <span class="p">(</span><span class="n">concat</span> <span class="o">.</span> <span class="n">concat</span><span class="p">)</span> <span class="n">xs</span> <span class="o">==</span> <span class="p">(</span><span class="n">concat</span> <span class="o">.</span> <span class="n">concat</span><span class="p">)</span> <span class="n">xs</span>
+<span class="hspec-info">  Spec.hs:8: 
+</span>  1) Prelude.reverse reverses a list
+
+Randomized with seed 921447365
+
+Finished in 0.0005 seconds
+<span class="hspec-failure">2 examples, 1 failure
+</span></samp></pre>
+
+<p>This spec contains one failing spec item.</p>
+
+<p>The <code>/</code>-separated path of that spec item is:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>Prelude/reverse/reverses a list
 </code></pre></div>
-<p>Link the program with <code>-threaded</code> and pass <code>+RTS -N -RTS</code> when running it:</p>
+<p>The pretty-printed path as it appears in the test output is:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>Prelude.reverse reverses a list
+</code></pre></div>
+<p>You can rerun the failing spec item by either matching on the <code>/</code>-separated
+path or the pretty-printed path.  Both of the following options lead to the
+same result:</p>
 
-<pre>
-<kbd class="shell-input">ghc -threaded Spec.hs</kbd>
-</pre>
+<pre><kbd class="shell-input">runhaskell Spec.hs -m "Prelude/reverse/reverses a list"</kbd></pre>
 
-<pre>
-<kbd class="shell-input">./Spec +RTS -N -RTS</kbd>
-</pre>
+<pre><kbd class="shell-input">runhaskell Spec.hs -m "Prelude.reverse reverses a list"</kbd></pre>
 
-<p>All specs that are not explicitly marked with <code>parallel</code> are run in the
-application&#39;s main thread.</p>
+<p>Or you can match on any substring of one of the above, e.g.:</p>
 
-<p>By default, the number of threads available for parallel execution is equal to
-the number of processors available to the process, as determined by
-<code>+RTS -N</code>.  A different number (higher or lower) can be specified using the
-<code>-j</code> option.  Note that this number is in addition to the main thread.</p>
+<pre><kbd class="shell-input">runhaskell Spec.hs -m reverse</kbd></pre>
+
+<div class="note"><p><strong>Note:</strong> Do not rely on the pretty-printed path for scripting purpose; use the <code>/</code>-separated path instead!</p>
+</div>
 
       </div>
     </div>
