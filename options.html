@@ -164,9 +164,12 @@ OPTIONS
               --skip=PATTERN      skip examples that match given PATTERN
 
 RUNNER OPTIONS
-        --dry-run               pretend that everything passed; don't verify
+        --[no-]dry-run          pretend that everything passed; don't verify
                                 anything
-        --fail-fast             abort on first failure
+        --[no-]focused-only     do not run anything, unless there are focused
+                                spec items
+        --[no-]fail-on-focused  fail on focused spec items
+        --[no-]fail-fast        abort on first failure
   -r    --rerun                 rerun all examples that failed in the previous
                                 test run (only works in combination with
                                 --failure-report or in GHCi)
