@@ -212,9 +212,14 @@ Stack, and from withing a GHCi-session.</p>
 <p>If you are using Cabal you can use <code>--test-option</code> to pass command-line options
 to Hspec:</p>
 
-<pre><kbd class="shell-input">cabal test --show-details=direct --test-option=--format=progress</kbd></pre>
+<pre><kbd class="shell-input">cabal test --test-show-details=direct --test-option=--format=progress</kbd></pre>
 
-<div class="note"><p><strong>Note:</strong> When running Hspec tests via Cabal, it is recommended to always specify <code>--show-details=direct</code>.</p>
+<pre><kbd class="shell-input">cabal test --test-show-details=direct --test-option=--match --test-option="some spec item"</kbd></pre>
+
+<div class="note"><p><strong>Note:</strong> When running Hspec tests via Cabal, it is recommended to always specify <code>--test-show-details=direct</code>.</p>
+</div>
+
+<div class="note"><p><strong>Note:</strong> With older versions of Cabal use <code>--show-details=direct</code> instead of <code>--test-show-details=direct</code>.</p>
 </div>
 
 <h3 id="stack">Stack</h3>
@@ -224,11 +229,14 @@ options to Hspec:</p>
 
 <pre><kbd class="shell-input">stack test --test-arguments=--format=progress</kbd></pre>
 
+<pre><kbd class="shell-input">stack test --test-arguments='--match "some spec item"'</kbd></pre>
+
 <h3 id="ghci">GHCi</h3>
 
 <p>If you run your tests from within a GHCi-session you can specify command-line
 options right after <code>:main</code>:</p>
 <div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>*Main&gt; :main --format=progress
+</code></pre></div><div class="highlight"><pre><code class="language-text" data-lang="text"><span></span>*Main&gt; :main --match &quot;some spec item&quot;
 </code></pre></div>
 <h2 id="specifying-options-in-config-files">Specifying options in config files</h2>
 
