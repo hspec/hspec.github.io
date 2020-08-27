@@ -168,7 +168,7 @@ Finished in 0.0005 seconds
 driver, namely: the maximum number of successes before succeeding, the maximum
 number of discarded tests per successful test before giving up and the size of
 the test case:</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="kr">import</span> <span class="nn">Test.Hspec.Core.QuickCheck</span> <span class="p">(</span><span class="nf">modifyMaxSize</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="kr">import</span> <span class="nn">Test.Hspec.Core.QuickCheck</span> <span class="p">(</span><span class="nf">modifyMaxSuccess</span><span class="p">)</span>
 
 describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
   <span class="n">modifyMaxSuccess</span> <span class="p">(</span><span class="n">const</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">$</span> it <span class="sd">&quot;is inverse to show&quot;</span> <span class="o">$</span> <span class="n">property</span> <span class="o">$</span>
