@@ -157,7 +157,7 @@ seamlessly.</p>
     it <span class="sd">&quot;reverses a list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
       <span class="n">reverse</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">@?=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">]</span></code></pre></figure>
 
-<pre><kbd class="shell-input">stack runhaskell --package hspec Spec.hs</kbd>
+<pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
 reverse
 <span class="hspec-success">  reverses a list
@@ -212,7 +212,7 @@ freely intermixed.</p>
 <span class="nf">test_23_is_equal_to_42</span> <span class="ow">=</span> <span class="kt">TestCase</span> <span class="o">$</span> <span class="kr">do</span>
   <span class="mi">23</span> <span class="o">@?=</span> <span class="p">(</span><span class="mi">42</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span></code></pre></figure>
 
-<pre><kbd class="shell-input">stack runhaskell --package hspec Spec.hs</kbd>
+<pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
 some ordinary spec items
 <span class="hspec-success">  returns the first element of a list
