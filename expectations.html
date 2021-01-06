@@ -217,7 +217,7 @@ Those can be used in combination with <code>shouldThrow</code> to expect specifi
       it <span class="sd">&quot;throws an exception&quot;</span> <span class="o">$</span> <span class="kr">do</span>
         <span class="n">readFile</span> <span class="s">&quot;none-existing-file&quot;</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">isDoesNotExistError</span></code></pre></figure>
 
-<pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
+<pre><kbd class="shell-input">stack runhaskell --package hspec Spec.hs</kbd>
 <samp>
 readFile
   when specified file does not exist
@@ -258,7 +258,7 @@ used:</p>
     it <span class="sd">&quot;throws an exception if used with an empty list&quot;</span> <span class="o">$</span> <span class="kr">do</span>
       <span class="n">evaluate</span> <span class="p">(</span><span class="n">head</span> <span class="kt">[]</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">errorCall</span> <span class="s">&quot;Prelude.head: empty list&quot;</span></code></pre></figure>
 
-<pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
+<pre><kbd class="shell-input">stack runhaskell --package hspec Spec.hs</kbd>
 <samp>
 Prelude.head
 <span class="hspec-success">  throws an exception if used with an empty list
@@ -314,7 +314,7 @@ does not work reliably!  (see the discussion at
     it <span class="sd">&quot;forces exceptions&quot;</span> <span class="o">$</span> <span class="kr">do</span>
       <span class="p">(</span><span class="n">evaluate</span> <span class="o">.</span> <span class="n">force</span><span class="p">)</span> <span class="p">(</span><span class="sc">&#39;a&#39;</span> <span class="kt">:</span> <span class="n">undefined</span><span class="p">)</span> <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="n">anyErrorCall</span></code></pre></figure>
 
-<pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
+<pre><kbd class="shell-input">stack runhaskell --package hspec Spec.hs</kbd>
 <samp>
 div
 <span class="hspec-success">  throws an exception if the second argument is 0
@@ -385,7 +385,7 @@ But beware that GHC does not fully adhere to those semantics (see
       <span class="n">evaluate</span> <span class="p">(</span><span class="ne">error</span> <span class="s">&quot;foo&quot;</span> <span class="o">+</span> <span class="ne">error</span> <span class="s">&quot;bar&quot;</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
         <span class="p">`</span><span class="n">shouldThrow</span><span class="p">`</span> <span class="p">(</span><span class="o">||</span><span class="p">)</span> <span class="o">&lt;$&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;foo&quot;</span> <span class="o">&lt;*&gt;</span> <span class="n">errorCall</span> <span class="s">&quot;bar&quot;</span></code></pre></figure>
 
-<pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
+<pre><kbd class="shell-input">stack runhaskell --package hspec Spec.hs</kbd>
 <samp>
 an exceptional value
 <span class="hspec-success">  contains a set of exceptions (semantically)
