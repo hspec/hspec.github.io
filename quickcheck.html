@@ -133,7 +133,7 @@ turn anything that is a member of the <a href="http://hackage.haskell.org/packag
 <a href="http://hackage.haskell.org/packages/archive/QuickCheck/latest/doc/html/Test-QuickCheck.html#t:Property"><code>Property</code></a>.  Here is an example:</p>
 <div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span>describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
   it <span class="sd">&quot;is inverse to show&quot;</span> <span class="o">$</span> <span class="n">property</span> <span class="o">$</span>
-    <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+    <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
 </code></pre></div>
 <div>
   <h5 class="foldable">Example code:</h5>
@@ -146,14 +146,50 @@ turn anything that is a member of the <a href="http://hackage.haskell.org/packag
 <span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
   describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
-    context <span class="sd">&quot;when used with ints&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    context <span class="sd">&quot;when used with Int&quot;</span> <span class="o">$</span> <span class="kr">do</span>
       it <span class="sd">&quot;is inverse to show&quot;</span> <span class="o">$</span> <span class="n">property</span> <span class="o">$</span>
-        <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span></code></pre></figure>
+        <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span></code></pre></figure>
 
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
 read
-  when used with ints
+  when used with Int
+<span class="hspec-success">    is inverse to show
+      +++ OK, passed 100 tests.
+</span>
+Finished in 0.0005 seconds
+<span class="hspec-success">1 example, 0 failures
+</span></samp></pre>
+
+  </div>
+</div>
+
+<p><code>it &quot;..&quot; $ property $ ..</code> is a common pattern. The
+<a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec-QuickCheck.html"><code>Test.Hspec.QuickCheck</code></a> module provides the <a href="http://hackage.haskell.org/packages/archive/hspec/latest/doc/html/Test-Hspec-QuickCheck.html#v:prop"><code>prop</code></a> function as a
+shortcut. With <code>prop</code>, the last example can be written as:</p>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span>describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+  <span class="n">prop</span> <span class="s">&quot;is inverse to show&quot;</span> <span class="o">$</span>
+    <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+</code></pre></div>
+<div>
+  <h5 class="foldable">Example code:</h5>
+  <div>
+
+<figure class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="c1">-- file Spec.hs</span>
+<span class="kr">import</span> <span class="nn">Test.Hspec</span>
+<span class="kr">import</span> <span class="nn">Test.Hspec.QuickCheck</span>
+
+<span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
+<span class="nf">main</span> <span class="ow">=</span> <span class="n">hspec</span> <span class="o">$</span> <span class="kr">do</span>
+  describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+    context <span class="sd">&quot;when used with Int&quot;</span> <span class="o">$</span> <span class="kr">do</span>
+      <span class="n">prop</span> <span class="s">&quot;is inverse to show&quot;</span> <span class="o">$</span>
+        <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span></code></pre></figure>
+
+<pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
+<samp>
+read
+  when used with Int
 <span class="hspec-success">    is inverse to show
       +++ OK, passed 100 tests.
 </span>
@@ -168,11 +204,11 @@ Finished in 0.0005 seconds
 driver, namely: the maximum number of successes before succeeding, the maximum
 number of discarded tests per successful test before giving up and the size of
 the test case:</p>
-<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="kr">import</span> <span class="nn">Test.Hspec.Core.QuickCheck</span> <span class="p">(</span><span class="nf">modifyMaxSuccess</span><span class="p">)</span>
+<div class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="kr">import</span> <span class="nn">Test.Hspec.QuickCheck</span> <span class="p">(</span><span class="nf">modifyMaxSuccess</span><span class="p">)</span>
 
 describe <span class="sd">&quot;read&quot;</span> <span class="o">$</span> <span class="kr">do</span>
   <span class="n">modifyMaxSuccess</span> <span class="p">(</span><span class="n">const</span> <span class="mi">1000</span><span class="p">)</span> <span class="o">$</span> it <span class="sd">&quot;is inverse to show&quot;</span> <span class="o">$</span> <span class="n">property</span> <span class="o">$</span>
-    <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="o">==</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
+    <span class="nf">\</span><span class="n">x</span> <span class="ow">-&gt;</span> <span class="p">(</span><span class="n">read</span> <span class="o">.</span> <span class="n">show</span><span class="p">)</span> <span class="n">x</span> <span class="p">`</span><span class="n">shouldBe</span><span class="p">`</span> <span class="p">(</span><span class="n">x</span> <span class="ow">::</span> <span class="kt">Int</span><span class="p">)</span>
 </code></pre></div>
       </div>
     </div>
