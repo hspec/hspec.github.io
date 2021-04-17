@@ -138,7 +138,7 @@ Hspec&#39;s distinctive features are:</p>
 
 <p>An example is worth a thousand words, so here we go:</p>
 
-<pre><kbd class="shell-input">cabal update && cabal install --lib hspec hspec-contrib QuickCheck HUnit</kbd></pre>
+<pre><kbd class="shell-input">cabal update && cabal install --package-env=. --lib hspec hspec-contrib QuickCheck HUnit</kbd></pre>
 
 <figure class="highlight"><pre><code class="language-hspec" data-lang="hspec"><span></span><span class="c1">-- file Spec.hs</span>
 <span class="kr">import</span> <span class="nn">Test.Hspec</span>
