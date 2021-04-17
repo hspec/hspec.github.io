@@ -221,8 +221,8 @@ Those can be used in combination with <code>shouldThrow</code> to expect specifi
 <samp>
 readFile
   when specified file does not exist
-<span class="hspec-success">    throws an exception
-</span>
+    throws an exception [<span class="hspec-success">✔</span>]
+
 Finished in 0.0005 seconds
 <span class="hspec-success">1 example, 0 failures
 </span></samp></pre>
@@ -261,8 +261,8 @@ used:</p>
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
 Prelude.head
-<span class="hspec-success">  throws an exception if used with an empty list
-</span>
+  throws an exception if used with an empty list [<span class="hspec-success">✔</span>]
+
 Finished in 0.0005 seconds
 <span class="hspec-success">1 example, 0 failures
 </span></samp></pre>
@@ -317,12 +317,12 @@ does not work reliably!  (see the discussion at
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
 div
-<span class="hspec-success">  throws an exception if the second argument is 0
-</span>evaluate
-<span class="hspec-failure">  forces exceptions FAILED [1]
-</span>evaluate . force
-<span class="hspec-success">  forces exceptions
-</span>
+  throws an exception if the second argument is 0 [<span class="hspec-success">✔</span>]
+evaluate
+  forces exceptions [<span class="hspec-failure">✘</span>]
+evaluate . force
+  forces exceptions [<span class="hspec-success">✔</span>]
+
 Failures:
 
 <span class="hspec-info">  Spec.hs:13:7: 
@@ -388,8 +388,8 @@ But beware that GHC does not fully adhere to those semantics (see
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
 an exceptional value
-<span class="hspec-success">  contains a set of exceptions (semantically)
-</span>
+  contains a set of exceptions (semantically) [<span class="hspec-success">✔</span>]
+
 Finished in 0.0005 seconds
 <span class="hspec-success">1 example, 0 failures
 </span></samp></pre>

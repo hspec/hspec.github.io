@@ -160,8 +160,8 @@ seamlessly.</p>
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
 reverse
-<span class="hspec-success">  reverses a list
-</span>
+  reverses a list [<span class="hspec-success">✔</span>]
+
 Finished in 0.0005 seconds
 <span class="hspec-success">1 example, 0 failures
 </span></samp></pre>
@@ -215,11 +215,11 @@ freely intermixed.</p>
 <pre><kbd class="shell-input">runhaskell Spec.hs</kbd>
 <samp>
 some ordinary spec items
-<span class="hspec-success">  returns the first element of a list
-</span>some legacy HUnit tests
-<span class="hspec-success">  test_read_is_inverse_to_show
-</span><span class="hspec-failure">  test_23_is_equal_to_42 FAILED [1]
-</span>
+  returns the first element of a list [<span class="hspec-success">✔</span>]
+some legacy HUnit tests
+  test_read_is_inverse_to_show [<span class="hspec-success">✔</span>]
+  test_23_is_equal_to_42 [<span class="hspec-failure">✘</span>]
+
 Failures:
 
 <span class="hspec-info">  Spec.hs:29:3: 
