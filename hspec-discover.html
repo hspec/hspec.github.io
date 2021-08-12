@@ -265,11 +265,6 @@ match the file name.</li>
 <span class="kr">import</span>           <span class="nn">Test.Hspec</span>
 <span class="kr">import</span>           <span class="nn">System.Logging.Facade.Sink</span>
 
-<span class="kr">data</span> <span class="kt">Connection</span>
-
-<span class="nf">withConnection</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Connection</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="n">a</span>
-<span class="nf">withConnection</span> <span class="ow">=</span> <span class="n">undefined</span>
-
 <span class="nf">hook</span> <span class="ow">::</span> <span class="kt">SpecWith</span> <span class="kt">Connection</span> <span class="ow">-&gt;</span> <span class="kt">Spec</span>
 <span class="nf">hook</span> <span class="ow">=</span> <span class="n">around</span> <span class="n">withConnection</span>
 </code></pre></div>
