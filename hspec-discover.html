@@ -92,6 +92,9 @@
 <li>
 <a href="#using-a-custom-main-function">Using a custom main function</a>
 </li>
+<li>
+<a href="#spec-hooks">Spec hooks</a>
+</li>
 </ul>
 
           
@@ -217,6 +220,55 @@ default formatter:</p>
 
 <span class="nf">main</span> <span class="ow">::</span> <span class="kt">IO</span> <span class="nb">()</span>
 <span class="nf">main</span> <span class="ow">=</span> <span class="n">hspecWith</span> <span class="n">defaultConfig</span> <span class="p">{</span><span class="n">configFormatter</span> <span class="ow">=</span> <span class="kt">Just</span> <span class="n">progress</span><span class="p">}</span> <span class="kt">Spec</span><span class="o">.</span><span class="n">spec</span>
+</code></pre></div>
+<h2 id="spec-hooks">Spec hooks</h2>
+
+<div class="note"><p><strong>Note:</strong> This section assumes that you are using <code>hspec-2.8.3</code> or later.</p>
+</div>
+
+<p><a href="writing-specs.html#using-hooks">Using hooks</a> shows how to use hooks to run
+custom <code>IO</code> actions before every spec item in a test module, or to a subtree of
+spec items of that module.</p>
+
+<p><em>Spec hooks</em> lift this concept to the level of test suites.</p>
+
+<p><code>hspec-discover</code> looks for files that are named <code>SpecHook.hs</code>.  Hooks defined
+in these files are applied to the test suite as a whole, or to a subtree of it.
+ * Spec hooks have to be placed into the same directory as the test driver, or
+   into a subdirectory.
+ * The name of a spec hook file has to be <code>SpecHook.hs</code>; the module name has to
+   match the file name.
+ * Each spec hook file has to export a top-level binding <code>hook</code> of type <code>SpecWith a -&gt; SpecWith b</code>.</p>
+
+<p>Here is an example that shows how this can be utilized to:</p>
+
+<ul>
+<li>Silence log messages for the whole test suite</li>
+<li>Open a database connection for all tests defined under <code>Database.Models</code></li>
+</ul>
+<div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span></span><span class="c1">-- file test/Spec.hs</span>
+<span class="cm">{-# OPTIONS_GHC -F -pgmF hspec-discover #-}</span>
+</code></pre></div><div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span></span><span class="c1">-- file test/SpecHook.hs</span>
+<span class="kr">module</span> <span class="nn">SpecHook</span> <span class="kr">where</span>
+
+<span class="kr">import</span>           <span class="nn">Test.Hspec</span>
+<span class="kr">import</span>           <span class="nn">System.Logging.Facade.Sink</span>
+
+<span class="nf">hook</span> <span class="ow">::</span> <span class="kt">Spec</span> <span class="ow">-&gt;</span> <span class="kt">Spec</span>
+<span class="nf">hook</span> <span class="ow">=</span> <span class="n">aroundAll_</span> <span class="p">(</span><span class="n">withLogSink</span> <span class="o">$</span> <span class="nf">\</span> <span class="kr">_</span> <span class="ow">-&gt;</span> <span class="n">return</span> <span class="nb">()</span><span class="p">)</span>
+</code></pre></div><div class="highlight"><pre><code class="language-haskell" data-lang="haskell"><span></span><span class="c1">-- file test/Database/Models/SpecHook.hs</span>
+<span class="kr">module</span> <span class="nn">Database.Models.SpecHook</span> <span class="kr">where</span>
+
+<span class="kr">import</span>           <span class="nn">Test.Hspec</span>
+<span class="kr">import</span>           <span class="nn">System.Logging.Facade.Sink</span>
+
+<span class="kr">data</span> <span class="kt">Connection</span>
+
+<span class="nf">withConnection</span> <span class="ow">::</span> <span class="p">(</span><span class="kt">Connection</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="n">a</span><span class="p">)</span> <span class="ow">-&gt;</span> <span class="kt">IO</span> <span class="n">a</span>
+<span class="nf">withConnection</span> <span class="ow">=</span> <span class="n">undefined</span>
+
+<span class="nf">hook</span> <span class="ow">::</span> <span class="kt">SpecWith</span> <span class="kt">Connection</span> <span class="ow">-&gt;</span> <span class="kt">Spec</span>
+<span class="nf">hook</span> <span class="ow">=</span> <span class="n">around</span> <span class="n">withConnection</span>
 </code></pre></div>
       </div>
     </div>
