@@ -190,15 +190,17 @@ FORMATTER OPTIONS
                 --[no-]diff             show colorized diffs
                 --[no-]times            report times for individual spec items
                 --print-cpu-time        include used CPU time in summary
-  -p[N]         --print-slow-specs[=N]  print the N slowest spec items (default:
+  -p[N]         --print-slow-items[=N]  print the N slowest spec items (default:
                                         10)
 
 OPTIONS FOR QUICKCHECK
   -a N  --qc-max-success=N  maximum number of successful tests before a
                             QuickCheck property succeeds
-        --qc-max-size=N     size to use for the biggest test cases
         --qc-max-discard=N  maximum number of discarded tests per successful
                             test before giving up
+        --qc-max-size=N     size to use for the biggest test cases
+        --qc-max-shrinks=N  maximum number of shrinks to perform before giving
+                            up (a value of 0 turns shrinking off)
         --seed=N            used seed for QuickCheck properties
 
 OPTIONS FOR SMALLCHECK
