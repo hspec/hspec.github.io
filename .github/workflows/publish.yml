@@ -43,7 +43,7 @@ jobs:
           rm cabal.project
           cd doc
           cabal update
-          cabal install HUnit QuickCheck hspec hspec-contrib --lib --package-env .
+          cabal install HUnit QuickCheck hspec hspec-core hspec-contrib --lib --package-env .
           bundle exec jekyll build
 
       - uses: actions/upload-pages-artifact@v1
