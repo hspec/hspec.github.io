@@ -1,6 +1,8 @@
 name:  Publish documentation 
 
 on:
+  repository_dispatch:
+    types: ["publish"]
   workflow_dispatch:
     inputs:
       ref:
@@ -27,7 +29,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           repository: hspec/hspec
-          ref: ${{ inputs.ref }}
+          ref: ${{ inputs.ref || 'main' }}
       - uses: actions/upload-pages-artifact@v1
         with:
           path: doc/_site/
