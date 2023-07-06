@@ -28,24 +28,6 @@ jobs:
         with:
           repository: hspec/hspec
           ref: ${{ inputs.ref }}
-          
-      - uses: actions/setup-python@v4
-        with:
-          python-version: 2
-    
-      - uses: ruby/setup-ruby@v1
-        with:
-          bundler-cache: true
-          working-directory: doc
-
-      - name: Build documentation
-        run: |
-          rm cabal.project
-          cd doc
-          cabal update
-          cabal install HUnit QuickCheck hspec hspec-core hspec-contrib --lib --package-env .
-          bundle exec jekyll build
-
       - uses: actions/upload-pages-artifact@v1
         with:
           path: doc/_site/
